@@ -2,42 +2,28 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <link
+      rel="icon"
+      href="data:image/png;base64,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"
+    />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <meta
       name="description"
-      content="Web site created using create-react-app"
+      content="Hacker News is a social news website focusing on computer science and entrepreneurship. It is run by Paul Graham's investment fund and startup incubator, Y Combinator. In general, content that can be submitted is defined as anything that gratifies one's intellectual curiosity."
     />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
 
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>React App</title>
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.0.7/css/all.css"
+    />
+
+    <title>Hacker News Clone</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
-
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
   </body>
 </html>

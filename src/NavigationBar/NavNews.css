@@ -1,0 +1,45 @@
+.nav {
+  margin-top: 1rem;
+  height: 28px;
+  background-color: rgb(250, 96, 25);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2px;
+}
+
+.icon img {
+  border: 1px solid #ffffff;
+  margin-left: 3px;
+  cursor: pointer;
+  width: 1.2rem;
+  position: relative;
+  top: 2px;
+}
+
+.nav span {
+  color: rgb(0, 0, 0);
+  font-size: 1rem;
+  font-weight: bold;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  margin-left: 5px;
+  margin-right: 12px;
+  cursor: pointer;
+}
+
+.sub-nav {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-evenly;
+  position: absolute;
+  top: 4px;
+  left: 180px;
+}
+
+.sub-nav li {
+  margin: 0 5px;
+}
+
+.login {
+  margin-right: 10px;
+}
