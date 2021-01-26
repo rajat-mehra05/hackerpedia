@@ -8,8 +8,17 @@ export const jobStories_URL = `${BASE_URL}jobstories.json`;
 export const askStories_URL = `${BASE_URL}askstories.json`;
 export const story_URL = `${BASE_URL}item/`;
 
-export const getStoryIds = async () => {
-  const res = await axios.get(topStories_URL);
+export const getStoryIds = async (category) => {
+  const res = await axios.get(`${BASE_URL}${category}.json`);
+  return res.data;
+};
+
+export const newStoryIds = async () => {
+  const res = await axios.get(newStories_URL);
+  return res.data;
+};
+export const askStoryIds = async () => {
+  const res = await axios.get(askStories_URL);
   return res.data;
 };
 

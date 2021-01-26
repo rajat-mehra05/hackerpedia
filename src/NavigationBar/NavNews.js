@@ -8,17 +8,17 @@ const NavNews = () => {
       <Router>
         <div className="nav">
           <div className="icon">
-            <Link to="/">
+            <a href="/" style={{ textDecoration: "none" }}>
               <img
                 style={{ cursor: "pointer" }}
                 src="https://news.ycombinator.com/y18.gif"
                 alt="logo"
                 height="80%"
               />
-            </Link>
-            <span>Hacker News</span>
+              <span>Hacker News</span>
+            </a>
             <Link
-              to="/newest"
+              to={{ pathname: "/newest" }}
               activeClassName="active"
               style={{
                 fontSize: "1.12rem",
