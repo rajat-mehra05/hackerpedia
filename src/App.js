@@ -1,6 +1,7 @@
 import React from "react";
 import StoryContainer from "./components/StoryContainer";
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import Login from "./login/Login";
 
 const App = () => {
   return (
@@ -33,6 +34,8 @@ const App = () => {
           path="/jobs"
           render={(props) => <StoryContainer category={`jobstories`} />}
         />
+
+        <Route exact path="/login" component={Login} />
       </Router>
     </>
   );
