@@ -8,13 +8,12 @@ import { useInfiniteScroll } from "../infiniteScroll/infiniteScroll";
 const StoryContainer = (props) => {
   const [storyIds, setStoryIds] = useState([]);
   const { count } = useInfiniteScroll();
-  const [category, setCategory] = useState("");
+  const [category, setCategory] = useState(null);
 
   useEffect(() => {
-    console.log(props);
     setCategory(props.category);
     getStoryIds(category).then((data) => setStoryIds(data));
-  }, [category]);
+  }, [category, props]);
 
   return (
     <>

@@ -6,6 +6,7 @@ export const topStories_URL = `${BASE_URL}topstories.json`;
 export const showStories_URL = `${BASE_URL}showstories.json`;
 export const jobStories_URL = `${BASE_URL}jobstories.json`;
 export const askStories_URL = `${BASE_URL}askstories.json`;
+export const bestStories_URL = `${BASE_URL}beststories.json`;
 export const story_URL = `${BASE_URL}item/`;
 
 export const getStoryIds = async (category) => {

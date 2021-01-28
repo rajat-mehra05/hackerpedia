@@ -1,8 +1,10 @@
 import React from "react";
 import "./NavNews.css";
 import { BrowserRouter as Router, Link } from "react-router-dom";
+import { useHistory } from "react-router";
 
 const NavNews = () => {
+  const history = useHistory();
   return (
     <>
       <Router>
@@ -14,68 +16,58 @@ const NavNews = () => {
                 src="https://news.ycombinator.com/y18.gif"
                 alt="logo"
                 height="80%"
-              />
+              />{" "}
               <span>Hacker News</span>
             </a>
-            <Link
-              to={{ pathname: "/newest" }}
-              activeClassName="active"
+            <span
+              className="categories"
               style={{
                 fontSize: "1.12rem",
-                color: "black",
                 textDecoration: "none",
               }}
+              onClick={() => history.push("/newest")}
             >
               new
-            </Link>
+            </span>
             {" | "}
-            <Link
-              to="/comments"
-              activeClassName="active"
+
+            <span
+              className="categories"
+              to="/best"
               style={{
                 fontSize: "1.12rem",
-                color: "black",
                 textDecoration: "none",
               }}
+              onClick={() => history.push("/best")}
             >
-              comments
-            </Link>{" "}
+              best
+            </span>
             {" | "}
-            <Link
+
+            <span
+              className="categories"
               to="/show"
-              activeClassName="active"
               style={{
                 fontSize: "1.12rem",
-                color: "black",
                 textDecoration: "none",
               }}
+              onClick={() => history.push("/show")}
             >
               show
-            </Link>
+            </span>
             {" | "}
-            <Link
-              to="/ask"
-              activeClassName="active"
-              style={{
-                fontSize: "1.12rem",
-                color: "black",
-                textDecoration: "none",
-              }}
-            >
-              ask
-            </Link>
-            {" | "}
-            <Link
+
+            <span
+              className="categories"
               to="/jobs"
-              activeClassName="active"
               style={{
                 fontSize: "1.12rem",
-                color: "black",
                 textDecoration: "none",
               }}
+              onClick={() => history.push("/jobs")}
             >
               jobs
-            </Link>
+            </span>
           </div>
 
           <div className="login">
