@@ -5,6 +5,7 @@ import Story from "./Story";
 import { Container } from "@material-ui/core";
 import { useInfiniteScroll } from "../infiniteScroll/infiniteScroll";
 import ClimbingBoxLoader from "react-spinners/ClimbingBoxLoader";
+import "../styles/StoryContainer.css";
 
 const StoryContainer = (props) => {
   const [storyIds, setStoryIds] = useState([]);
@@ -25,8 +26,11 @@ const StoryContainer = (props) => {
     <>
       <Container maxWidth="lg">
         <NavNews />
+
         {loading ? (
-          <ClimbingBoxLoader color={"#FC7310"} loading={loading} size={30} />
+          <div className="load">
+            <ClimbingBoxLoader color={"#FC7310"} loading={loading} size={30} />
+          </div>
         ) : (
           storyIds.slice(0, count).map((storyId) => <Story storyId={storyId} />)
         )}
