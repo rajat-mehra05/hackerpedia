@@ -19,7 +19,6 @@ const StoryContainer = (props) => {
     <>
       <Container maxWidth="lg">
         <NavNews />
-
         {storyIds.slice(0, count).map((storyId) => (
           <Story storyId={storyId} />
         ))}

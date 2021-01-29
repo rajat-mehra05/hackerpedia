@@ -33,6 +33,8 @@ export const StoryTitle = styled.h1`
 
 export const StoryMeta = styled.div`
 font-size: 0.756rem;
+display: flex;
+flex-wrap: wrap;
   > span:first-child {
     margin-right: 6px;
   }
