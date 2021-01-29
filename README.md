@@ -13,6 +13,7 @@
 - React Hooks
 - Axios
 - React Bootstrap
+- PWA(Progressive Web App)
 
 ### Setup
 ---
