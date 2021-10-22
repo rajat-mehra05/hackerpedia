@@ -16,19 +16,21 @@
 - React Bootstrap
 - PWA(Progressive Web App)
 
-### Setup
----
-Use the node package manager npm to set up the development enviroment.
+# Setup
 
-1. Install the needed node packges/modules :
-> npm install
-2. Start the development server :
-> npm run start
+  Use the node package manager npm to set up the development enviroment.
 
-### Contributing
+1. Install the needed node packges/modules : <br>
+`> npm install`
+2. Start the development server : <br>
+`> npm run start`
+
 ---
+
+# Contributing
+
 Pull requests are welcome. Please open an issue first to discuss what you would like to change.
 
  ### License
- ---
+ 
  [MIT](https://choosealicense.com/licenses/mit/)
