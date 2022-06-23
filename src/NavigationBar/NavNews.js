@@ -1,6 +1,5 @@
-import React from "react";
-import "./NavNews.css";
 import { useHistory } from "react-router";
+import "./NavNews.css";
 
 const NavNews = () => {
   const history = useHistory();
@@ -14,7 +13,7 @@ const NavNews = () => {
               src="https://news.ycombinator.com/y18.gif"
               alt="logo"
             />{" "}
-            <span>Hacker News</span>
+            <span>HackerPedia</span>
           </a>
           <span
             className="categories"
