@@ -1,12 +1,11 @@
 .nav {
   margin-top: 1rem;
-  height: 28px;
   background-color: rgb(250, 96, 25);
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  padding: 2px;
+  padding: 4px;
 }
 
 .icon img {
@@ -62,14 +61,16 @@
     height: 70px;
     margin-left: 2px;
     justify-content: space-between;
+    padding: 2px;
+  }
+
+  .icon img {
+    padding: 2px;
+    margin-right: 5px;
   }
 
   .nav a {
     display: flex;
     flex-wrap: wrap;
-  }
-
-  .git i {
-    font-size: large;
   }
 }
