@@ -1,5 +1,6 @@
 import { useHistory } from "react-router";
 import "./NavNews.css";
+import logo from "../hncLogo.png"
 
 const NavNews = () => {
   const history = useHistory();
@@ -10,7 +11,7 @@ const NavNews = () => {
           <a href="/" style={{ textDecoration: "none" }}>
             <img
               style={{ cursor: "pointer" }}
-              src="https://news.ycombinator.com/y18.gif"
+              src={logo}
               alt="logo"
             />{" "}
             <span>HackerPedia</span>
