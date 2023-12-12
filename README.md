@@ -1,7 +1,5 @@
 # Hacker News Clone
 
-[Hacker News Clone](https://rm-hackernews.netlify.app)
-
 ![](hnc.png)
 ---
 - While learning React, I tried making clone of Hacker News from [Hacker News API](https://github.com/HackerNews/API).
