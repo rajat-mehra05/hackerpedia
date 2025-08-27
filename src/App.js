@@ -1,38 +1,33 @@
 import React from "react";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import StoryContainer from "./components/StoryContainer";
-import { BrowserRouter as Router, Route } from "react-router-dom";
 
 const App = () => {
   return (
     <>
-      <Router>
-        <Route
-          exact
-          path="/"
-          render={(props) => <StoryContainer category={`topstories`} />}
-        />
-        <Route
-          exact
-          path="/show"
-          render={(props) => <StoryContainer category={`showstories`} />}
-        />
-        <Route
-          exact
-          path="/newest"
-          render={(props) => <StoryContainer category={`newstories`} />}
-        />
-
-        <Route
-          exact
-          path="/best"
-          render={(props) => <StoryContainer category={`beststories`} />}
-        />
-
-        <Route
-          exact
-          path="/jobs"
-          render={(props) => <StoryContainer category={`jobstories`} />}
-        />
+      <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+        <Routes>
+          <Route
+            path="/"
+            element={<StoryContainer category={`topstories`} />}
+          />
+          <Route
+            path="/show"
+            element={<StoryContainer category={`showstories`} />}
+          />
+          <Route
+            path="/newest"
+            element={<StoryContainer category={`newstories`} />}
+          />
+          <Route
+            path="/best"
+            element={<StoryContainer category={`beststories`} />}
+          />
+          <Route
+            path="/jobs"
+            element={<StoryContainer category={`jobstories`} />}
+          />
+        </Routes>
       </Router>
     </>
   );
