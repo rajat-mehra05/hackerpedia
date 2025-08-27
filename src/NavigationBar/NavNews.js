@@ -1,16 +1,16 @@
-import { useHistory } from "react-router";
+import { useNavigate } from "react-router-dom";
+import logo from "../hnlogo.png";
 import "./NavNews.css";
-import logo from "../hncLogo.png"
 
 const NavNews = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   return (
     <>
       <div className="nav">
         <div className="icon">
           <a href="/" style={{ textDecoration: "none" }}>
             <img
-              style={{ cursor: "pointer" }}
+              style={{ cursor: "pointer", height: "30px", width: "30px" }}
               src={logo}
               alt="logo"
             />{" "}
@@ -22,7 +22,7 @@ const NavNews = () => {
               fontSize: "1.12rem",
               textDecoration: "none",
             }}
-            onClick={() => history.push("/newest")}
+            onClick={() => navigate("/newest")}
           >
             new
           </span>
@@ -35,7 +35,7 @@ const NavNews = () => {
               fontSize: "1.12rem",
               textDecoration: "none",
             }}
-            onClick={() => history.push("/best")}
+            onClick={() => navigate("/best")}
           >
             best
           </span>
@@ -48,7 +48,7 @@ const NavNews = () => {
               fontSize: "1.12rem",
               textDecoration: "none",
             }}
-            onClick={() => history.push("/show")}
+            onClick={() => navigate("/show")}
           >
             show
           </span>
@@ -61,7 +61,7 @@ const NavNews = () => {
               fontSize: "1.12rem",
               textDecoration: "none",
             }}
-            onClick={() => history.push("/jobs")}
+            onClick={() => navigate("/jobs")}
           >
             jobs
           </span>
