@@ -1,11 +1,32 @@
+:root {
+  --nav-bg: rgb(250, 96, 25);
+  --nav-text: #000000;
+  --nav-text-hover: #ffffff;
+}
+
+.dark-theme {
+  --nav-bg: rgb(200, 76, 15);
+  --nav-text: #ffffff;
+  --nav-text-hover: #e8e8e8;
+}
+
 .nav {
   margin-top: 1rem;
-  background-color: rgb(250, 96, 25);
+  background-color: var(--nav-bg);
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
   padding: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.nav-main {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .icon img {
@@ -17,7 +38,7 @@
 }
 
 .nav a {
-  color: rgb(0, 0, 0);
+  color: var(--nav-text);
   font-size: 1rem;
   font-weight: bold;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -25,6 +46,7 @@
   margin-right: 12px;
   cursor: pointer;
   text-decoration: none;
+  transition: color 0.3s ease;
 }
 
 .nav span:first-child {
@@ -32,44 +54,49 @@
 }
 
 .nav a:hover {
-  color: #000000;
+  color: var(--nav-text-hover);
 }
 
 .nav .categories {
   cursor: pointer;
   letter-spacing: 1px;
   margin-left: 10px;
-  color: #000000;
+  color: var(--nav-text);
   font-weight: 400;
   font-size: 1.12rem;
   text-decoration: none;
+  transition: color 0.3s ease;
 }
 
 .nav .categories:hover {
-  color: #ffffff;
+  color: var(--nav-text-hover);
 }
 
 .git {
   margin-right: 10px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 
 .git a:hover {
-  color: white;
+  color: var(--nav-text-hover);
 }
 
 .nav .logo-link {
   text-decoration: none;
-  color: rgb(0, 0, 0);
+  color: var(--nav-text);
   font-size: 1rem;
   font-weight: bold;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   margin-left: 5px;
   margin-right: 12px;
   cursor: pointer;
+  transition: color 0.3s ease;
 }
 
 .nav .logo-link:hover {
-  color: #000000;
+  color: var(--nav-text-hover);
 }
 
 .nav .logo-img {
@@ -86,13 +113,50 @@
   text-decoration: none;
 }
 
+.theme-toggle {
+  background: none;
+  border: none;
+  color: var(--nav-text);
+  font-size: 20px;
+  cursor: pointer;
+  padding: 5px;
+  margin-left: 5px;
+  display: flex;
+  align-items: center;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.theme-toggle:hover {
+  color: var(--nav-text-hover);
+  transform: scale(1.1);
+}
+
+.theme-toggle:focus {
+  outline: 2px solid var(--nav-text-hover);
+  outline-offset: 2px;
+}
+
 @media (max-width: 720px) {
   .nav {
     margin-top: 1rem;
-    height: 70px;
+    min-height: 70px;
+    height: auto;
     margin-left: 2px;
     justify-content: space-between;
-    padding: 2px;
+    padding: 8px 4px;
+  }
+
+  .nav-main {
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .icon {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 100%;
   }
 
   .icon img {
@@ -103,5 +167,21 @@
   .nav a {
     display: flex;
     flex-wrap: wrap;
+  }
+
+  .nav .categories {
+    font-size: 1rem;
+    margin-left: 8px;
+  }
+
+  .git {
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .theme-toggle {
+    margin-left: 0;
   }
 }

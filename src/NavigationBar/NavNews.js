@@ -1,9 +1,12 @@
 import { useNavigate } from "react-router-dom";
+import { useTheme } from "../context/ThemeContext";
+import Search from "../components/Search";
 import logo from "../hnlogo.png";
 import "./NavNews.css";
 
-const NavNews = () => {
+const NavNews = ({ searchQuery, onSearchChange }) => {
   const navigate = useNavigate();
+  const { theme, toggleTheme } = useTheme();
 
   const handleNavigate = (path) => {
     navigate(path);
@@ -30,59 +33,64 @@ const NavNews = () => {
 
   return (
     <nav className="nav">
-      <div className="icon">
-        <span
-          className="logo-link"
-          role="button"
-          tabIndex={0}
-          onClick={handleLogoClick}
-          onKeyDown={handleLogoKeyDown}
-        >
-          <img className="logo-img" src={logo} alt="HackerPedia logo" />{" "}
-          <span>HackerPedia</span>
-        </span>
-        <span
-          className="categories"
-          role="button"
-          tabIndex={0}
-          onClick={() => handleNavigate("/newest")}
-          onKeyDown={(e) => handleKeyDown(e, "/newest")}
-        >
-          new
-        </span>
-        {" | "}
+      <div className="nav-main">
+        <div className="icon">
+          <span
+            className="logo-link"
+            role="button"
+            tabIndex={0}
+            onClick={handleLogoClick}
+            onKeyDown={handleLogoKeyDown}
+          >
+            <img className="logo-img" src={logo} alt="HackerPedia logo" />{" "}
+            <span>HackerPedia</span>
+          </span>
+          <span
+            className="categories"
+            role="button"
+            tabIndex={0}
+            onClick={() => handleNavigate("/newest")}
+            onKeyDown={(e) => handleKeyDown(e, "/newest")}
+          >
+            new
+          </span>
+          {" | "}
 
-        <span
-          className="categories"
-          role="button"
-          tabIndex={0}
-          onClick={() => handleNavigate("/best")}
-          onKeyDown={(e) => handleKeyDown(e, "/best")}
-        >
-          best
-        </span>
-        {" | "}
+          <span
+            className="categories"
+            role="button"
+            tabIndex={0}
+            onClick={() => handleNavigate("/best")}
+            onKeyDown={(e) => handleKeyDown(e, "/best")}
+          >
+            best
+          </span>
+          {" | "}
 
-        <span
-          className="categories"
-          role="button"
-          tabIndex={0}
-          onClick={() => handleNavigate("/show")}
-          onKeyDown={(e) => handleKeyDown(e, "/show")}
-        >
-          show
-        </span>
-        {" | "}
+          <span
+            className="categories"
+            role="button"
+            tabIndex={0}
+            onClick={() => handleNavigate("/show")}
+            onKeyDown={(e) => handleKeyDown(e, "/show")}
+          >
+            show
+          </span>
+          {" | "}
 
-        <span
-          className="categories"
-          role="button"
-          tabIndex={0}
-          onClick={() => handleNavigate("/jobs")}
-          onKeyDown={(e) => handleKeyDown(e, "/jobs")}
-        >
-          jobs
-        </span>
+          <span
+            className="categories"
+            role="button"
+            tabIndex={0}
+            onClick={() => handleNavigate("/jobs")}
+            onKeyDown={(e) => handleKeyDown(e, "/jobs")}
+          >
+            jobs
+          </span>
+        </div>
+        {onSearchChange && (
+          <Search searchQuery={searchQuery} onSearchChange={onSearchChange} />
+        )}
       </div>
 
       <div className="git">
@@ -113,6 +121,17 @@ const NavNews = () => {
         >
           <i className="fab fa-github icon-link" aria-hidden="true" />
         </a>
+        <button
+          className="theme-toggle"
+          onClick={toggleTheme}
+          aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
+          title={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
+        >
+          <i 
+            className={`fas fa-${theme === 'light' ? 'moon' : 'sun'}`} 
+            aria-hidden="true"
+          />
+        </button>
       </div>
     </nav>
   );

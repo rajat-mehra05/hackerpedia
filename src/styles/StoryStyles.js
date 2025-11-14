@@ -3,9 +3,9 @@ import styled from "styled-components";
 export const StoryWrapper = styled.section`
   font-family: "Verdana", sans-serif;
   padding: 10px 0 5px 15px;
-  /*  border-top: 0.5px solid #cccccc; */
-  color: grey;
-  background-color: #eee;
+  color: ${props => props.theme.colors.secondary};
+  background-color: ${props => props.theme.colors.cardBackground};
+  transition: background-color 0.3s ease, color 0.3s ease;
   &:first-of-type {
     border-top: 0;
   }
@@ -23,11 +23,13 @@ export const StoryTitle = styled.h1`
   margin: 0;
   text-decoration: none;
   a {
-    color: #2e2e2c;
+    color: ${props => props.theme.colors.link};
     text-decoration: none;
+    transition: color 0.3s ease;
   }
   a:hover {
     text-decoration: underline;
+    color: ${props => props.theme.colors.linkHover};
   }
 `;
 
@@ -39,8 +41,8 @@ flex-wrap: wrap;
     margin-right: 6px;
   }
   > span:not(:first-child):before {
-    content: '•';
-    margin: 0 7px;
+    content: '|';
+    margin: 0 1px;
   }
 `;
 
@@ -53,7 +55,8 @@ export const StoryMetaElement = styled.span`
     text-decoration: underline;
   }
   font-weight: normal;
-  color: ${(props) => props.color};
+  color: ${(props) => props.theme.colors.tertiary};
+  transition: color 0.3s ease;
 `;
 
 export const UpvoteIcon = styled.i`
@@ -61,18 +64,23 @@ export const UpvoteIcon = styled.i`
   margin-top: 7px;
   padding: 0px;
   margin-right: 5px;
+  color: ${props => props.theme.colors.secondary};
+  transition: color 0.3s ease;
 `;
 
 export const DomainLink = styled.a`
-  color: #828282;
+  color: ${props => props.theme.colors.domainLink};
+  transition: color 0.3s ease;
 `;
 
 export const UserLink = styled.a`
   font-weight: bold;
-  color: #828282;
+  color: ${props => props.theme.colors.secondary};
+  transition: color 0.3s ease;
 `;
 
 export const CommentsLink = styled.a`
   font-weight: bold;
-  color: #828282;
+  color: ${props => props.theme.colors.secondary};
+  transition: color 0.3s ease;
 `;

@@ -1,3 +1,15 @@
+:root {
+  --text-primary: #2e2e2c;
+  --text-secondary: #696969;
+  --container-bg: #f6f6ef;
+}
+
+.dark-theme {
+  --text-primary: #e8e8e8;
+  --text-secondary: #999999;
+  --container-bg: #1a1a1a;
+}
+
 .load {
   display: flex;
   justify-content: center;
@@ -15,4 +27,30 @@
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border-width: 0;
+}
+
+.search-results-info {
+  padding: 15px;
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.no-results {
+  padding: 40px 20px;
+  text-align: center;
+  color: var(--text-primary);
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.no-results p:first-child {
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.no-results p:last-child {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
 }

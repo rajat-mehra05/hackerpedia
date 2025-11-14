@@ -1,10 +1,16 @@
 import React from "react";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import { ThemeProvider as StyledThemeProvider } from "styled-components";
+import { ThemeProvider, useTheme } from "./context/ThemeContext";
+import { lightTheme, darkTheme } from "./styles/themes";
 import StoryContainer from "./components/StoryContainer";
 
-const App = () => {
+const ThemedApp = () => {
+  const { theme } = useTheme();
+  const currentTheme = theme === 'light' ? lightTheme : darkTheme;
+
   return (
-    <>
+    <StyledThemeProvider theme={currentTheme}>
       <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
         <Routes>
           <Route
@@ -29,7 +35,15 @@ const App = () => {
           />
         </Routes>
       </Router>
-    </>
+    </StyledThemeProvider>
+  );
+};
+
+const App = () => {
+  return (
+    <ThemeProvider>
+      <ThemedApp />
+    </ThemeProvider>
   );
 };
 
