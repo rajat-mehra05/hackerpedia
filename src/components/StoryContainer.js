@@ -15,6 +15,7 @@ const StoryContainer = (props) => {
   useEffect(() => {
     const fetchStories = async () => {
       if (props.category) {
+        console.log("Fetching stories for category:", props.category);
         setLoading(true);
         try {
           const data = await getStoryIds(props.category);

@@ -41,6 +41,8 @@
   margin-left: 10px;
   color: #000000;
   font-weight: 400;
+  font-size: 1.12rem;
+  text-decoration: none;
 }
 
 .nav .categories:hover {
@@ -53,6 +55,35 @@
 
 .git a:hover {
   color: white;
+}
+
+.nav .logo-link {
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+  font-size: 1rem;
+  font-weight: bold;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  margin-left: 5px;
+  margin-right: 12px;
+  cursor: pointer;
+}
+
+.nav .logo-link:hover {
+  color: #000000;
+}
+
+.nav .logo-img {
+  cursor: pointer;
+  height: 30px;
+  width: 30px;
+}
+
+.nav .icon-link {
+  font-size: 20px;
+}
+
+.git .source {
+  text-decoration: none;
 }
 
 @media (max-width: 720px) {

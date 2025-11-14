@@ -39,7 +39,7 @@ flex-wrap: wrap;
     margin-right: 6px;
   }
   > span:not(:first-child):before {
-    content: '•'
+    content: '•';
     margin: 0 7px;
   }
 `;
@@ -54,4 +54,25 @@ export const StoryMetaElement = styled.span`
   }
   font-weight: normal;
   color: ${(props) => props.color};
+`;
+
+export const UpvoteIcon = styled.i`
+  font-size: 20px;
+  margin-top: 7px;
+  padding: 0px;
+  margin-right: 5px;
+`;
+
+export const DomainLink = styled.a`
+  color: #828282;
+`;
+
+export const UserLink = styled.a`
+  font-weight: bold;
+  color: #828282;
+`;
+
+export const CommentsLink = styled.a`
+  font-weight: bold;
+  color: #828282;
 `;
