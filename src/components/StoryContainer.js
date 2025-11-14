@@ -32,21 +32,24 @@ const StoryContainer = (props) => {
   }, [props.category]);
 
   return (
-    <>
-      <Container maxWidth="lg">
-        <NavNews />
+    <Container maxWidth="lg" component="main">
+      <NavNews />
 
-        {loading ? (
-          <div className="load">
-            <ClimbingBoxLoader color={"#FC7310"} loading={loading} size={30} />
-          </div>
-        ) : (
-          storyIds
+      {loading ? (
+        <div className="load" role="status" aria-live="polite">
+          <ClimbingBoxLoader color={"#FC7310"} loading={loading} size={30} />
+          <span className="sr-only">Loading stories...</span>
+        </div>
+      ) : (
+        <section aria-label="Stories">
+          {storyIds
             .slice(0, count)
-            .map((storyId) => <Story key={storyId} storyId={storyId} />)
-        )}
-      </Container>
-    </>
+            .map((storyId) => (
+              <Story key={storyId} storyId={storyId} />
+            ))}
+        </section>
+      )}
+    </Container>
   );
 };
 
