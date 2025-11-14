@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { getStory } from "../services/hnAPI";
 import mapTime from "./mapTime";
 import {
@@ -91,9 +92,8 @@ const Story = ({ storyId, storyData }) => {
         <span data-testid="story-comments">
           <StoryMetaElement color="#696969">
             <CommentsLink
-              href={`https://news.ycombinator.com/item?id=${story.id}`}
-              target="_blank"
-              rel="noopener noreferrer"
+              as={Link}
+              to={`/item/${story.id}`}
             >
               {story?.kids?.length || 0} comments
             </CommentsLink>
