@@ -29,12 +29,16 @@
   gap: 10px;
 }
 
+.icon {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
 .icon img {
   border: 1px solid #ffffff;
-  margin-left: 1px;
   cursor: pointer;
-  position: relative;
-  margin-bottom: 6px;
 }
 
 .nav a {
@@ -60,36 +64,28 @@
 .nav .categories {
   cursor: pointer;
   letter-spacing: 1px;
-  margin-left: 10px;
   color: var(--nav-text);
   font-weight: 400;
   font-size: 1.12rem;
   text-decoration: none;
   transition: color 0.3s ease;
+  display: inline-flex;
+  align-items: center;
 }
 
 .nav .categories:hover {
   color: var(--nav-text-hover);
 }
 
-.git {
-  margin-right: 10px;
+.nav .logo-link {
   display: flex;
   align-items: center;
-  gap: 5px;
-}
-
-.git a:hover {
-  color: var(--nav-text-hover);
-}
-
-.nav .logo-link {
+  gap: 8px;
   text-decoration: none;
   color: var(--nav-text);
   font-size: 1rem;
   font-weight: bold;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  margin-left: 5px;
   margin-right: 12px;
   cursor: pointer;
   transition: color 0.3s ease;
@@ -105,14 +101,6 @@
   width: 30px;
 }
 
-.nav .icon-link {
-  font-size: 20px;
-}
-
-.git .source {
-  text-decoration: none;
-}
-
 .theme-toggle {
   background: none;
   border: none;
@@ -120,7 +108,6 @@
   font-size: 20px;
   cursor: pointer;
   padding: 5px;
-  margin-left: 5px;
   display: flex;
   align-items: center;
   transition: color 0.3s ease, transform 0.3s ease;
@@ -136,14 +123,33 @@
   outline-offset: 2px;
 }
 
+/* Desktop/Tablet - show theme toggle on the right */
+.theme-toggle-desktop {
+  margin-right: 10px;
+}
+
+/* Mobile - hide desktop version by default */
+.theme-toggle-mobile-no-search,
+.theme-toggle-mobile-with-search {
+  display: none;
+}
+
+.search-theme-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+}
+
 @media (max-width: 720px) {
   .nav {
     margin-top: 1rem;
     min-height: 70px;
     height: auto;
     margin-left: 2px;
-    justify-content: space-between;
+    justify-content: flex-start;
     padding: 8px 4px;
+    flex-direction: column;
   }
 
   .nav-main {
@@ -174,14 +180,29 @@
     margin-left: 8px;
   }
 
-  .git {
-    margin-top: 8px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+  /* Mobile - hide desktop version */
+  .theme-toggle-desktop {
+    display: none;
   }
 
-  .theme-toggle {
-    margin-left: 0;
+  /* Mobile with search - show beside search bar, centered */
+  .search-theme-wrapper {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+  .theme-toggle-mobile-with-search {
+    display: flex;
+    flex-shrink: 0;
+  }
+
+  /* Mobile without search - show at far right */
+  .theme-toggle-mobile-no-search {
+    display: flex;
+    margin-left: auto;
   }
 }

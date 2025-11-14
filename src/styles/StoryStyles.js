@@ -22,6 +22,10 @@ export const StoryTitle = styled.h1`
   line-height: 1.2;
   margin: 0;
   text-decoration: none;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 5px;
   a {
     color: ${props => props.theme.colors.link};
     text-decoration: none;
@@ -67,11 +71,11 @@ export const StoryMetaElement = styled.span`
 
 export const UpvoteIcon = styled.i`
   font-size: 20px;
-  margin-top: 7px;
   padding: 0px;
-  margin-right: 5px;
   color: ${props => props.theme.colors.secondary};
   transition: color 0.3s ease;
+  display: inline-flex;
+  align-items: center;
 `;
 
 export const DomainLink = styled.a`
