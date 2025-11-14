@@ -4,6 +4,7 @@ import { ThemeProvider as StyledThemeProvider } from "styled-components";
 import { ThemeProvider, useTheme } from "./context/ThemeContext";
 import { lightTheme, darkTheme } from "./styles/themes";
 import StoryContainer from "./components/StoryContainer";
+import CommentPage from "./pages/CommentPage";
 
 const ThemedApp = () => {
   const { theme } = useTheme();
@@ -32,6 +33,10 @@ const ThemedApp = () => {
           <Route
             path="/jobs"
             element={<StoryContainer category={`jobstories`} />}
+          />
+          <Route
+            path="/item/:id"
+            element={<CommentPage />}
           />
         </Routes>
       </Router>

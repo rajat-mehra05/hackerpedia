@@ -34,15 +34,21 @@ export const StoryTitle = styled.h1`
 `;
 
 export const StoryMeta = styled.div`
-font-size: 0.756rem;
-display: flex;
-flex-wrap: wrap;
-  > span:first-child {
-    margin-right: 6px;
+  font-size: 0.756rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  align-items: center;
+  
+  > span {
+    display: flex;
+    align-items: center;
+    gap: 4px;
   }
+  
   > span:not(:first-child):before {
     content: '|';
-    margin: 0 1px;
+    color: ${props => props.theme.colors.tertiary};
   }
 `;
 
