@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { getStory } from "../services/hnAPI";
+import { getStory } from "../services/cacheService";
 import mapTime from "./mapTime";
 import {
   StoryWrapper,

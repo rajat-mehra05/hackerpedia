@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { Container } from '@mui/material';
 import styled from 'styled-components';
 import ClimbingBoxLoader from 'react-spinners/ClimbingBoxLoader';
-import { getStory, getCommentsRecursive } from '../services/hnAPI';
+import { getStory, getCommentsRecursive } from '../services/cacheService';
 import NavNews from '../NavigationBar/NavNews';
 import CommentList from '../components/CommentList';
 import mapTime from '../components/mapTime';
@@ -117,7 +117,7 @@ const CommentPage = () => {
         
         if (storyData.kids && storyData.kids.length > 0) {
           setCommentsLoading(true);
-          const commentsData = await getCommentsRecursive(storyData.kids);
+          const commentsData = await getCommentsRecursive(storyData.kids, 10, 0, id);
           setComments(commentsData);
           setCommentsLoading(false);
         } else {

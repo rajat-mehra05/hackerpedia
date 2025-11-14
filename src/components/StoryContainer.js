@@ -4,7 +4,7 @@ import styled from "styled-components";
 import ClimbingBoxLoader from "react-spinners/ClimbingBoxLoader";
 import { useInfiniteScroll } from "../infiniteScroll/infiniteScroll";
 import NavNews from "../NavigationBar/NavNews";
-import { getStoryIds, getStory } from "../services/hnAPI";
+import { getStoryIds, getStory } from "../services/cacheService";
 import "../styles/StoryContainer.css";
 import Story from "./Story";
 
@@ -23,48 +23,78 @@ const StoryContainer = (props) => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    let isMounted = true;
+    
     const fetchStories = async () => {
       if (props.category) {
         setLoading(true);
         setSearchQuery('');
+        
         try {
           const data = await getStoryIds(props.category);
+          
+          if (!isMounted) return;
+          
           setStoryIds(data);
           
           const storyPromises = data.slice(0, 30).map(id => getStory(id));
           const loadedStories = await Promise.all(storyPromises);
+          
+          if (!isMounted) return;
+          
           const validStories = loadedStories.filter(story => story && story.url);
           setStories(validStories);
           setFilteredStories(validStories);
         } catch (error) {
           console.error("Error fetching stories:", error);
-          setStoryIds([]);
-          setStories([]);
-          setFilteredStories([]);
+          if (isMounted) {
+            setStoryIds([]);
+            setStories([]);
+            setFilteredStories([]);
+          }
         } finally {
-          setLoading(false);
+          if (isMounted) {
+            setLoading(false);
+          }
         }
       }
     };
 
     fetchStories();
+    
+    return () => {
+      isMounted = false;
+    };
   }, [props.category]);
 
   useEffect(() => {
     const loadMoreStories = async () => {
-      if (stories.length < count && stories.length < storyIds.length) {
+      if (stories.length < count && stories.length < storyIds.length && storyIds.length > 0) {
         const startIndex = stories.length;
         const endIndex = Math.min(count, storyIds.length);
         const newIds = storyIds.slice(startIndex, endIndex);
+        
+        if (newIds.length === 0) return;
         
         try {
           const storyPromises = newIds.map(id => getStory(id));
           const loadedStories = await Promise.all(storyPromises);
           const validStories = loadedStories.filter(story => story && story.url);
           
-          setStories(prev => [...prev, ...validStories]);
+          setStories(prev => {
+            // Prevent duplicates by checking existing IDs
+            const existingIds = new Set(prev.map(s => s.id));
+            const newStories = validStories.filter(story => !existingIds.has(story.id));
+            return [...prev, ...newStories];
+          });
+          
           if (!searchQuery) {
-            setFilteredStories(prev => [...prev, ...validStories]);
+            setFilteredStories(prev => {
+              // Prevent duplicates in filtered stories too
+              const existingIds = new Set(prev.map(s => s.id));
+              const newStories = validStories.filter(story => !existingIds.has(story.id));
+              return [...prev, ...newStories];
+            });
           }
         } catch (error) {
           console.error("Error loading more stories:", error);

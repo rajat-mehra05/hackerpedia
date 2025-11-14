@@ -29,7 +29,6 @@ export const ThemeProvider = ({ children }) => {
   const value = {
     theme,
     toggleTheme,
-    isDark: theme === 'dark',
   };
 
   return (
