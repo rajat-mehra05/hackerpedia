@@ -6,7 +6,7 @@ const SearchContainer = styled.div`
   align-items: center;
   margin: 0 15px;
   flex: 1;
-  max-width: 400px;
+  max-width: 350px;
 
   @media (max-width: 720px) {
     max-width: 100%;

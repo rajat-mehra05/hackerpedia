@@ -42,7 +42,7 @@ const NavNews = ({ searchQuery, onSearchChange }) => {
             onClick={handleLogoClick}
             onKeyDown={handleLogoKeyDown}
           >
-            <img className="logo-img" src={logo} alt="HackerPedia logo" />{" "}
+            <img className="logo-img" src={logo} alt="HackerPedia logo" />
             <span>HackerPedia</span>
           </span>
           <span
@@ -87,52 +87,48 @@ const NavNews = ({ searchQuery, onSearchChange }) => {
           >
             jobs
           </span>
+          {!onSearchChange && (
+            <button
+              className="theme-toggle theme-toggle-mobile-no-search"
+              onClick={toggleTheme}
+              aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
+              title={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
+            >
+              <i 
+                className={`fas fa-${theme === 'light' ? 'moon' : 'sun'}`} 
+                aria-hidden="true"
+              />
+            </button>
+          )}
         </div>
         {onSearchChange && (
-          <Search searchQuery={searchQuery} onSearchChange={onSearchChange} />
+          <div className="search-theme-wrapper">
+            <Search searchQuery={searchQuery} onSearchChange={onSearchChange} />
+            <button
+              className="theme-toggle theme-toggle-mobile-with-search"
+              onClick={toggleTheme}
+              aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
+              title={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
+            >
+              <i 
+                className={`fas fa-${theme === 'light' ? 'moon' : 'sun'}`} 
+                aria-hidden="true"
+              />
+            </button>
+          </div>
         )}
       </div>
-
-      <div className="git">
-        <a
-          href="https://www.linkedin.com/in/rajat-mehra-/"
-          className="source"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="LinkedIn profile"
-        >
-          <i className="fab fa-linkedin icon-link" aria-hidden="true" />{" "}
-        </a>
-        <a
-          href="https://twitter.com/_rajat_mehra_"
-          className="source"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Twitter profile"
-        >
-          <i className="fab fa-twitter icon-link" aria-hidden="true" />{" "}
-        </a>
-        <a
-          href="https://github.com/rajat-mehra05/hacker-news-clone"
-          className="source"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="GitHub repository"
-        >
-          <i className="fab fa-github icon-link" aria-hidden="true" />
-        </a>
-        <button
-          className="theme-toggle"
-          onClick={toggleTheme}
-          aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
-          title={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
-        >
-          <i 
-            className={`fas fa-${theme === 'light' ? 'moon' : 'sun'}`} 
-            aria-hidden="true"
-          />
-        </button>
-      </div>
+      <button
+        className="theme-toggle theme-toggle-desktop"
+        onClick={toggleTheme}
+        aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
+        title={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
+      >
+        <i 
+          className={`fas fa-${theme === 'light' ? 'moon' : 'sun'}`} 
+          aria-hidden="true"
+        />
+      </button>
     </nav>
   );
 };

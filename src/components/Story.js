@@ -43,7 +43,7 @@ const Story = ({ storyId, storyData }) => {
         <UpvoteIcon className="fas fa-sort-up" aria-hidden="true" />
         <a href={story.url} rel="noopener noreferrer" target="_blank">
           {story.title}
-        </a>
+        </a>{" "}
         <span>
           <i className="fas fa-globe" aria-hidden="true" /> (
           <DomainLink
