@@ -41,6 +41,7 @@ A modern, feature-rich Hacker News clone built with React while learning fronten
 - **Axios** - Efficient API calls with error handling
 - **Context API** - Global theme management
 - **PWA Support** - Progressive Web App capabilities
+- **Smart Caching** - localStorage-based caching with 2-minute TTL and LRU eviction
 
 ---
 
@@ -115,28 +116,78 @@ hackerpedia/
 │   │   ├── Search.js           # Search input component
 │   │   ├── Story.js            # Story card component
 │   │   ├── StoryContainer.js   # Main story feed
-│   │   ├── infiniteScroll.js   # Infinite scroll hook
 │   │   └── mapTime.js          # Time formatting utility
 │   ├── context/
 │   │   └── ThemeContext.js     # Theme provider
+│   ├── infiniteScroll/
+│   │   ├── constants.js        # Infinite scroll constants
+│   │   └── infiniteScroll.js   # Infinite scroll hook
 │   ├── NavigationBar/
 │   │   ├── NavNews.js          # Navigation component
 │   │   └── NavNews.css         # Navigation styles
 │   ├── pages/
 │   │   └── CommentPage.js      # Comment view page
 │   ├── services/
-│   │   └── hnAPI.js            # Hacker News API calls
+│   │   ├── hnAPI.js            # Hacker News API calls
+│   │   └── cacheService.js     # Caching layer for API calls
 │   ├── styles/
 │   │   ├── CommentStyles.js    # Comment styled components
 │   │   ├── StoryStyles.js      # Story styled components
-│   │   └── GlobalStyles.js     # Global styles
+│   │   ├── StoryContainer.css  # Story container styles
+│   │   └── themes.js           # Theme definitions
 │   ├── utils/
-│   │   └── commentUtils.js     # Comment helper functions
+│   │   ├── cacheUtils.js       # Cache management utilities
+│   │   ├── commentUtils.js     # Comment helper functions
+│   │   ├── searchUtils.js      # Search helper functions
+│   │   └── themeUtils.js       # Theme helper functions
 │   ├── App.js                  # Main app component
-│   └── index.js                # App entry point
+│   ├── index.js                # App entry point
+│   └── index.css               # Global styles
 ├── package.json
 └── README.md
 ```
+
+---
+
+## ⚡ Caching Strategy
+
+The app implements an intelligent caching system to improve performance and reduce API calls:
+
+### Cache Configuration
+- **Cache Duration**: 2 minutes TTL (Time To Live)
+- **Storage**: localStorage for persistence across page reloads
+- **Capacity**: 
+  - 100 stories maximum
+  - 40 comment threads maximum
+
+### How It Works
+
+1. **First Request**: Data is fetched from the Hacker News API and stored in localStorage with a timestamp
+2. **Subsequent Requests**: If cached data exists and is less than 2 minutes old, it's returned instantly
+3. **Cache Expiration**: After 2 minutes, the cache is considered stale and fresh data is fetched
+4. **LRU Eviction**: When cache limits are reached, the Least Recently Used items are automatically removed
+
+### Benefits
+- **Faster Navigation**: Back button and revisits load instantly from cache
+- **Reduced API Calls**: Minimizes requests to Hacker News API
+- **Better UX**: No loading spinners for cached content
+- **Persistence**: Cache survives page reloads (within TTL window)
+- **No External Dependencies**: Pure localStorage implementation
+
+### Implementation Details
+
+The caching system consists of two layers:
+
+1. **`cacheUtils.js`**: Low-level cache management
+   - localStorage read/write operations
+   - TTL validation
+   - LRU eviction algorithm
+   - Expired entry cleanup
+
+2. **`cacheService.js`**: High-level API wrapper
+   - Transparent caching layer over HN API calls
+   - Cache-first strategy with API fallback
+   - Automatic cache updates after API calls
 
 ---
 
