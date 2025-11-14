@@ -12,10 +12,16 @@ import {
   CommentsLink,
 } from "../styles/StoryStyles";
 
-const Story = ({ storyId }) => {
-  const [story, setStory] = useState({});
+const Story = ({ storyId, storyData }) => {
+  const [story, setStory] = useState(storyData || {});
 
   useEffect(() => {
+    // Only fetch if storyData wasn't provided
+    if (storyData) {
+      setStory(storyData);
+      return;
+    }
+
     const fetchStory = async () => {
       try {
         const data = await getStory(storyId);
@@ -28,7 +34,7 @@ const Story = ({ storyId }) => {
     };
 
     fetchStory();
-  }, [storyId]);
+  }, [storyId, storyData]);
 
   return story && story.url ? (
     <StoryWrapper as="article" data-testid="story">
@@ -73,8 +79,7 @@ const Story = ({ storyId }) => {
               rel="noopener noreferrer"
             >
               {story.by}
-            </UserLink>{" "}
-            |
+            </UserLink>
           </StoryMetaElement>
         </span>
         <span data-testid="story-time">
@@ -82,7 +87,6 @@ const Story = ({ storyId }) => {
           <time dateTime={new Date(story.time * 1000).toISOString()}>
             {mapTime(story.time)} ago
           </time>
-          |{" "}
         </span>
         <span data-testid="story-comments">
           <StoryMetaElement color="#696969">

@@ -1,3 +1,17 @@
+:root {
+  --body-bg: #f6f6ef;
+  --scrollbar-bg: white;
+  --scrollbar-thumb: rgb(250, 96, 25);
+  --scrollbar-border: white;
+}
+
+.dark-theme {
+  --body-bg: #1a1a1a;
+  --scrollbar-bg: #1a1a1a;
+  --scrollbar-thumb: rgb(200, 76, 15);
+  --scrollbar-border: #1a1a1a;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -5,6 +19,14 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--body-bg);
+  transition: background-color 0.3s ease;
+  min-height: 100vh;
+}
+
+html {
+  background-color: var(--body-bg);
+  transition: background-color 0.3s ease;
 }
 
 code {
@@ -13,12 +35,12 @@ code {
 }
 
 body::-webkit-scrollbar {
-  background: white;
+  background: var(--scrollbar-bg);
   behavior: smooth;
   width: 15px;
 }
 body::-webkit-scrollbar-thumb {
-  background-color: rgb(250, 96, 25);
+  background-color: var(--scrollbar-thumb);
   border-radius: 6px;
-  border: 3px solid white;
+  border: 3px solid var(--scrollbar-border);
 }
