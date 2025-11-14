@@ -1,7 +1,7 @@
-export const debounce = (func, wait, immediate, args) => {
+export const debounce = (func, wait, immediate) => {
   let timeout;
 
-  return () => {
+  return function executedFunction(...args) {
     const context = this;
     const callNow = immediate && !timeout;
     const later = () => {

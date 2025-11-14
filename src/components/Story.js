@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import { getStory } from "../services/hnAPI";
 import mapTime from "./mapTime";
@@ -7,34 +6,40 @@ import {
   StoryTitle,
   StoryMeta,
   StoryMetaElement,
+  UpvoteIcon,
+  DomainLink,
+  UserLink,
+  CommentsLink,
 } from "../styles/StoryStyles";
 
-const Story = ({ storyId, url, item }) => {
-  const [story, setStory] = useState([]);
+const Story = ({ storyId }) => {
+  const [story, setStory] = useState({});
 
   useEffect(() => {
-    getStory(storyId).then((data) => data && data.url && setStory(data));
-  }, []);
+    const fetchStory = async () => {
+      try {
+        const data = await getStory(storyId);
+        if (data && data.url) {
+          setStory(data);
+        }
+      } catch (error) {
+        console.error(`Error fetching story ${storyId}:`, error);
+      }
+    };
+
+    fetchStory();
+  }, [storyId]);
 
   return story && story.url ? (
     <StoryWrapper as="article" data-testid="story">
       <StoryTitle as="h2">
-        <i
-          className="fas fa-sort-up"
-          style={{
-            fontSize: "20px",
-            marginTop: "7px",
-            padding: "0px",
-            marginRight: "5px",
-          }}
-          aria-hidden="true"
-        />
+        <UpvoteIcon className="fas fa-sort-up" aria-hidden="true" />
         <a href={story.url} rel="noopener noreferrer" target="_blank">
           {story.title}
         </a>{" "}
         <span>
           <i className="fas fa-globe" aria-hidden="true" /> (
-          <a
+          <DomainLink
             href={`https://${
               story.url
                 .replace("http://", "")
@@ -42,7 +47,6 @@ const Story = ({ storyId, url, item }) => {
                 .split(/[/?#]/)[0]
             }`}
             target="_blank"
-            style={{ color: "#828282" }}
             rel="noopener noreferrer"
           >
             {story.url
@@ -50,7 +54,7 @@ const Story = ({ storyId, url, item }) => {
               .replace("https://", "")
               .split(/[/?#]/)[0]
               .replace("www.", "")}
-          </a>
+          </DomainLink>
           )
         </span>
       </StoryTitle>{" "}
@@ -62,15 +66,15 @@ const Story = ({ storyId, url, item }) => {
         </span>
         <span data-testid="story-by">
           <StoryMetaElement color="#696969">
-            by
-            <a
+            by{" "}
+            <UserLink
               href={`https://news.ycombinator.com/user?id=${story.by}`}
               target="_blank"
-              style={{ fontWeight: "bold", color: "#828282" }}
               rel="noopener noreferrer"
             >
               {story.by}
-            </a>|
+            </UserLink>{" "}
+            |
           </StoryMetaElement>
         </span>
         <span data-testid="story-time">
@@ -82,14 +86,13 @@ const Story = ({ storyId, url, item }) => {
         </span>
         <span data-testid="story-comments">
           <StoryMetaElement color="#696969">
-            <a
+            <CommentsLink
               href={`https://news.ycombinator.com/item?id=${story.id}`}
               target="_blank"
-              style={{ fontWeight: "bold", color: "#828282" }}
               rel="noopener noreferrer"
             >
               {story?.kids?.length || 0} comments
-            </a>
+            </CommentsLink>
           </StoryMetaElement>
         </span>
       </StoryMeta>

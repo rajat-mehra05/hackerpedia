@@ -1,5 +1,4 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { STORY_INCREMENT, MAX_STORIES } from "./constants";
 import { debounce } from "./debounce";
 
@@ -7,17 +6,20 @@ export const useInfiniteScroll = () => {
   const [loading, setLoading] = useState(false);
   const [count, setCount] = useState(STORY_INCREMENT);
 
-  const handleScroll = debounce(() => {
-    if (
-      window.innerHeight + document.documentElement.scrollTop !==
-        document.documentElement.offsetHeight ||
-      loading
-    ) {
-      return false;
-    }
+  const handleScroll = useCallback(
+    debounce(() => {
+      if (
+        window.innerHeight + document.documentElement.scrollTop !==
+          document.documentElement.offsetHeight ||
+        loading
+      ) {
+        return false;
+      }
 
-    setLoading(true);
-  }, 500);
+      setLoading(true);
+    }, 500),
+    [loading]
+  );
 
   useEffect(() => {
     if (!loading) return;
@@ -29,12 +31,12 @@ export const useInfiniteScroll = () => {
     }
 
     setLoading(false);
-  }, [loading]);
+  }, [loading, count]);
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [handleScroll]);
 
   return { count };
 };
