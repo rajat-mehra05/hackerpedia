@@ -42,7 +42,7 @@ const Story = ({ storyId, storyData }) => {
         <UpvoteIcon className="fas fa-sort-up" aria-hidden="true" />
         <a href={story.url} rel="noopener noreferrer" target="_blank">
           {story.title}
-        </a>{" "}
+        </a>
         <span>
           <i className="fas fa-globe" aria-hidden="true" /> (
           <DomainLink
@@ -63,7 +63,7 @@ const Story = ({ storyId, storyData }) => {
           </DomainLink>
           )
         </span>
-      </StoryTitle>{" "}
+      </StoryTitle>
       <StoryMeta>
         <span data-testid="story-points">
           <StoryMetaElement color="#696969">
@@ -72,7 +72,7 @@ const Story = ({ storyId, storyData }) => {
         </span>
         <span data-testid="story-by">
           <StoryMetaElement color="#696969">
-            by{" "}
+            by
             <UserLink
               href={`https://news.ycombinator.com/user?id=${story.by}`}
               target="_blank"
@@ -83,7 +83,7 @@ const Story = ({ storyId, storyData }) => {
           </StoryMetaElement>
         </span>
         <span data-testid="story-time">
-          <StoryMetaElement color="#696969">posted </StoryMetaElement> {` `}
+          <StoryMetaElement color="#696969">posted </StoryMetaElement>
           <time dateTime={new Date(story.time * 1000).toISOString()}>
             {mapTime(story.time)} ago
           </time>
