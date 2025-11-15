@@ -1,9 +1,9 @@
-# HackerPedia - Hacker News Clone
+# HackerPedia
 
 <img width="1164" height="794" alt="Screenshot 2025-11-15 at 12 20 16 PM" src="https://github.com/user-attachments/assets/1fc794a8-62a2-4761-a7de-908f114fb4c0" />
 
 
-A modern, feature-rich Hacker News clone built with React while learning frontend development. This project fetches real-time data from the [Hacker News API](https://github.com/HackerNews/API) without using any state management library like Redux.
+A modern, feature-rich Hacker News interface built with React while learning frontend development. This project fetches real-time data from the [Hacker News API](https://github.com/HackerNews/API) without using any state management library like Redux.
 
 ---
 
