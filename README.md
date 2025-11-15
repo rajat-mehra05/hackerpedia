@@ -7,6 +7,19 @@ A modern, feature-rich Hacker News clone built with React while learning fronten
 
 ---
 
+## 🛠️ Tech Stack
+
+- **React** - UI framework
+- **React Hooks** - State and lifecycle management
+- **Styled Components** - CSS-in-JS with theming
+- **Material-UI (MUI)** - Layout components and design system
+- **React Router DOM** - Client-side routing
+- **Axios** - HTTP client for API calls
+- **React Spinners** - Loading animations
+- **PWA** - Progressive Web App
+
+---
+
 ## ✨ Features
 
 ### Core Functionality
@@ -42,20 +55,7 @@ A modern, feature-rich Hacker News clone built with React while learning fronten
 - **Axios** - Efficient API calls with error handling
 - **Context API** - Global theme management
 - **PWA Support** - Progressive Web App capabilities
-- **Smart Caching** - localStorage-based caching with 2-minute TTL and LRU eviction
-
----
-
-## 🛠️ Tech Stack
-
-- **React** - UI framework
-- **React Hooks** - State and lifecycle management
-- **Styled Components** - CSS-in-JS with theming
-- **Material-UI (MUI)** - Layout components and design system
-- **React Router DOM** - Client-side routing
-- **Axios** - HTTP client for API calls
-- **React Spinners** - Loading animations
-- **PWA** - Progressive Web App
+- **Smart Caching** - localStorage-based caching with 5-minute TTL and LRU eviction
 
 ---
 
@@ -155,18 +155,11 @@ hackerpedia/
 The app implements an intelligent caching system to improve performance and reduce API calls:
 
 ### Cache Configuration
-- **Cache Duration**: 2 minutes TTL (Time To Live)
+- **Cache Duration**: 5 minutes TTL (Time To Live)
 - **Storage**: localStorage for persistence across page reloads
 - **Capacity**: 
   - 100 stories maximum
   - 40 comment threads maximum
-
-### How It Works
-
-1. **First Request**: Data is fetched from the Hacker News API and stored in localStorage with a timestamp
-2. **Subsequent Requests**: If cached data exists and is less than 2 minutes old, it's returned instantly
-3. **Cache Expiration**: After 2 minutes, the cache is considered stale and fresh data is fetched
-4. **LRU Eviction**: When cache limits are reached, the Least Recently Used items are automatically removed
 
 ### Benefits
 - **Faster Navigation**: Back button and revisits load instantly from cache
@@ -238,5 +231,3 @@ Pull requests are welcome! For major changes, please open an issue first to disc
 - The React community for excellent documentation and resources
 
 ---
-
-**Made with ❤️ while learning React**

@@ -1,5 +1,5 @@
 // Cache configuration
-const CACHE_TTL = 2 * 60 * 1000; // 2 minutes in milliseconds
+const CACHE_TTL = 5 * 60 * 1000; // 5 minutes in milliseconds
 const MAX_STORIES = 100;
 const MAX_COMMENTS = 40;
 
