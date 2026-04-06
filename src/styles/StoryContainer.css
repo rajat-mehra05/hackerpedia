@@ -10,13 +10,6 @@
   --container-bg: #1a1a1a;
 }
 
-.load {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-
 .sr-only {
   position: absolute;
   width: 1px;

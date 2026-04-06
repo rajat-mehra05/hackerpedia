@@ -11,10 +11,11 @@
     "react-dom": "^18.3.1",
     "react-router-dom": "^7.1.1",
     "react-scripts": "5.0.1",
-    "react-spinners": "^0.15.0",
+    "react-window": "^2.2.7",
     "styled-components": "^6.1.14"
   },
   "scripts": {
+    "dev": "react-scripts start",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

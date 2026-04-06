@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { Container } from '@mui/material';
+import Container from '@mui/material/Container';
 import styled from 'styled-components';
-import ClimbingBoxLoader from 'react-spinners/ClimbingBoxLoader';
+import { CommentPageSkeleton } from '../styles/SkeletonStyles';
 import { getStory, getCommentsRecursive } from '../services/cacheService';
 import NavNews from '../NavigationBar/NavNews';
 import CommentList from '../components/CommentList';
@@ -61,15 +61,6 @@ const StoryLink = styled.a`
     text-decoration: underline;
     color: ${props => props.theme.colors.linkHover};
   }
-`;
-
-const LoadingWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 50vh;
-  flex-direction: column;
-  gap: 20px;
 `;
 
 const ErrorMessage = styled.div`
@@ -144,9 +135,7 @@ const CommentPage = () => {
     return (
       <StyledContainer maxWidth="lg" component="main">
         <NavNews />
-        <LoadingWrapper>
-          <ClimbingBoxLoader color="#FC7310" loading={true} size={30} />
-        </LoadingWrapper>
+        <CommentPageSkeleton />
       </StyledContainer>
     );
   }

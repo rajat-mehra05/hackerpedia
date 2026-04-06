@@ -2,17 +2,10 @@ import styled from "styled-components";
 
 export const StoryWrapper = styled.section`
   font-family: "Verdana", sans-serif;
-  padding: 10px 0 5px 15px;
+  padding: 10px 0 10px 15px;
   color: ${props => props.theme.colors.secondary};
   background-color: ${props => props.theme.colors.cardBackground};
   transition: background-color 0.3s ease, color 0.3s ease;
-  &:first-of-type {
-    border-top: 0;
-  }
-  &:last-of-type {
-    margin-bottom: 0;
-    padding-bottom: 0;
-  }
 `;
 
 export const StoryTitle = styled.h1`
