@@ -2,20 +2,13 @@ import React from 'react';
 import CommentItem from './CommentItem';
 import {
   CommentListWrapper,
-  LoadingComment,
   NoComments,
 } from '../styles/CommentStyles';
-import { ClimbingBoxLoader } from 'react-spinners';
+import { CommentListSkeleton } from '../styles/SkeletonStyles';
 
 const CommentList = ({ comments, loading }) => {
   if (loading) {
-    return (
-      <CommentListWrapper>
-        <LoadingComment>
-          <ClimbingBoxLoader color="#FC7310" loading={true} size={30} />
-        </LoadingComment>
-      </CommentListWrapper>
-    );
+    return <CommentListSkeleton />;
   }
 
   if (!comments || comments.length === 0) {

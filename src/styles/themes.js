@@ -27,6 +27,10 @@ export const lightTheme = {
     
     // Accents
     accent: '#FC7310',
+
+    // Shimmer/Skeleton
+    shimmerBase: '#ddd',
+    shimmerHighlight: '#e8e8e8',
   },
 };
 
@@ -59,6 +63,10 @@ export const darkTheme = {
     
     // Accents
     accent: '#FC7310',
+
+    // Shimmer/Skeleton
+    shimmerBase: '#333',
+    shimmerHighlight: '#3d3d3d',
   },
 };
 

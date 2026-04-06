@@ -160,14 +160,6 @@ export const CommentListWrapper = styled.div`
   overflow-x: auto;
 `;
 
-export const LoadingComment = styled.div`
-  padding: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 200px;
-`;
-
 export const NoComments = styled.div`
   padding: 40px 20px;
   text-align: center;
