@@ -16,8 +16,7 @@ export const getComment = async (commentId) => {
   try {
     const resp = await axios.get(`${BASE_URL}item/${commentId}.json`);
     return resp.data;
-  } catch (error) {
-    console.error(`Error fetching comment ${commentId}:`, error);
+  } catch {
     return null;
   }
 };

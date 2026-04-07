@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { CommentPageSkeleton } from '../styles/SkeletonStyles';
+import { CommentPageSkeleton } from '../styles/SkeletonComponents';
 import { getStory, getCommentsRecursive } from '../services/cacheService';
 import NavNews from '../NavigationBar/NavNews';
 import CommentList from '../components/CommentList';
@@ -42,8 +42,7 @@ const CommentPage = () => {
         } else {
           setCommentsLoading(false);
         }
-      } catch (err) {
-        console.error('Error fetching story:', err);
+      } catch {
         setError('Failed to load story');
         setLoading(false);
         setCommentsLoading(false);

@@ -1,7 +1,7 @@
 import React from 'react';
 import CommentItem from './CommentItem';
 import styles from '../styles/Comment.module.css';
-import { CommentListSkeleton } from '../styles/SkeletonStyles';
+import { CommentListSkeleton } from '../styles/SkeletonComponents';
 
 const CommentList = ({ comments, loading }) => {
   if (loading) {
