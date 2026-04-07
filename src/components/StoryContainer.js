@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback, useRef, startTransition } from "react";
 import { List, useDynamicRowHeight } from "react-window";
-import { StoryListSkeleton } from "../styles/SkeletonStyles";
+import { StoryListSkeleton } from "../styles/SkeletonComponents";
 import NavNews from "../NavigationBar/NavNews";
 import { getStoryIds, getStory } from "../services/cacheService";
 import { STORY_INCREMENT, MAX_STORIES } from "../infiniteScroll/constants";
@@ -69,8 +69,7 @@ const StoryContainer = (props) => {
           // Hide skeleton after first batch arrives
           if (i === 0) setLoading(false);
         }
-      } catch (error) {
-        console.error("Error fetching stories:", error);
+      } catch {
         if (isMounted) {
           setStoryIds([]);
           setStories([]);
@@ -122,8 +121,8 @@ const StoryContainer = (props) => {
       }
 
       loadedCountRef.current = nextCount;
-    } catch (error) {
-      console.error("Error loading more stories:", error);
+    } catch {
+      // Silently handle load failure — user can scroll to retry
     } finally {
       isLoadingMore.current = false;
     }

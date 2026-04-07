@@ -20,8 +20,7 @@ const getCacheKeys = (type) => {
     const namespace = getCacheNamespace(type);
     const keys = localStorage.getItem(namespace);
     return keys ? JSON.parse(keys) : [];
-  } catch (error) {
-    console.error(`Error getting cache keys for ${type}:`, error);
+  } catch {
     return [];
   }
 };
@@ -31,8 +30,8 @@ const saveCacheKeys = (type, keys) => {
   try {
     const namespace = getCacheNamespace(type);
     localStorage.setItem(namespace, JSON.stringify(keys));
-  } catch (error) {
-    console.error(`Error saving cache keys for ${type}:`, error);
+  } catch {
+    // localStorage write failed — non-critical
   }
 };
 
@@ -67,8 +66,7 @@ export const getCacheItem = (key) => {
     localStorage.setItem(key, JSON.stringify(entry));
 
     return entry.data;
-  } catch (error) {
-    console.error(`Error getting cache item ${key}:`, error);
+  } catch {
     return null;
   }
 };
@@ -135,8 +133,8 @@ export const setCacheItem = (key, data, type) => {
 
     // Save updated keys list
     saveCacheKeys(type, keys);
-  } catch (error) {
-    console.error(`Error setting cache item ${key}:`, error);
+  } catch {
+    // localStorage write failed — non-critical
   }
 };
 
@@ -166,8 +164,8 @@ export const clearExpiredCache = () => {
 
       saveCacheKeys(type, validKeys);
     });
-  } catch (error) {
-    console.error('Error clearing expired cache:', error);
+  } catch {
+    // Cache cleanup failed — non-critical
   }
 };
 

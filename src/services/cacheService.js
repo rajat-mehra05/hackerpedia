@@ -71,8 +71,7 @@ export const getComments = async (commentIds) => {
     const commentPromises = commentIds.map(id => getComment(id));
     const comments = await Promise.all(commentPromises);
     return comments.filter(comment => comment !== null);
-  } catch (error) {
-    console.error('Error fetching comments:', error);
+  } catch {
     return [];
   }
 };

@@ -21,8 +21,8 @@ const Story = ({ storyId, storyData }) => {
         if (data && data.url) {
           setStory(data);
         }
-      } catch (error) {
-        console.error(`Error fetching story ${storyId}:`, error);
+      } catch {
+        // Fetch failed — component will remain empty
       }
     };
 
