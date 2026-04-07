@@ -66,7 +66,7 @@ A modern, feature-rich Hacker News interface built with React while learning fro
 Use the node package manager npm to set up the development environment.
 
 ### Prerequisites
-- Node.js (v18 or higher)
+- Node.js (v20.19+ or v22.12+)
 - npm
 
 ### Installation
