@@ -1,0 +1,124 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 24px;
+  box-sizing: border-box;
+  background-color: var(--color-body);
+  min-height: 100vh;
+  transition: background-color 0.3s ease;
+  padding-bottom: 40px;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 8px;
+    padding-bottom: 40px;
+  }
+}
+
+.breadcrumb {
+  padding: 15px 0;
+  font-size: 0.9rem;
+}
+
+.breadcrumb button {
+  background: none;
+  border: none;
+  color: var(--color-link);
+  cursor: pointer;
+  text-decoration: underline;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 0.9rem;
+  padding: 0;
+}
+
+.breadcrumb button:hover {
+  color: var(--color-linkHover);
+}
+
+.storyHeader {
+  background-color: var(--color-cardBackground);
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.storyLink {
+  color: var(--color-link);
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 500;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+.storyLink:hover {
+  text-decoration: underline;
+  color: var(--color-linkHover);
+}
+
+.errorMessage {
+  padding: 40px 20px;
+  text-align: center;
+  color: var(--color-primary);
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.commentCount {
+  padding: 15px 20px;
+  color: var(--color-secondary);
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 0.9rem;
+  background-color: var(--color-cardBackground);
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+/* Story meta in comment page — reuse Story.module.css patterns */
+
+.storyMeta {
+  font-size: 0.756rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  align-items: center;
+}
+
+.storyMeta > span {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.storyMeta > span:not(:first-child)::before {
+  content: '|';
+  color: var(--color-tertiary);
+}
+
+.storyMetaElement {
+  font-weight: normal;
+  color: var(--color-tertiary);
+  transition: color 0.3s ease;
+}
+
+.storyMetaElement a {
+  margin-left: 4px;
+  text-decoration: none;
+}
+
+.storyMetaElement a:hover {
+  text-decoration: underline;
+}
+
+.domainLink {
+  color: var(--color-domainLink);
+  transition: color 0.3s ease;
+}
+
+.userLink {
+  font-weight: bold;
+  color: var(--color-secondary);
+  transition: color 0.3s ease;
+}

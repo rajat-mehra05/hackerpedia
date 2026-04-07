@@ -4,131 +4,61 @@ import Search from "../components/Search";
 import logo from "../hnlogo.png";
 import "./NavNews.css";
 
+const ThemeToggle = ({ className }) => {
+  const { theme, toggleTheme } = useTheme();
+  const nextTheme = theme === 'light' ? 'dark' : 'light';
+  return (
+    <button
+      className={`theme-toggle ${className}`}
+      onClick={toggleTheme}
+      aria-label={`Switch to ${nextTheme} mode`}
+      title={`Switch to ${nextTheme} mode`}
+    >
+      <i className={`fas fa-${theme === 'light' ? 'moon' : 'sun'}`} aria-hidden="true" />
+    </button>
+  );
+};
+
 const NavNews = ({ searchQuery, onSearchChange }) => {
   const navigate = useNavigate();
-  const { theme, toggleTheme } = useTheme();
-
-  const handleNavigate = (path) => {
-    navigate(path);
-  };
-
-  const handleKeyDown = (event, path) => {
-    if (event.key === "Enter" || event.key === " ") {
-      event.preventDefault();
-      navigate(path);
-    }
-  };
-
-  const handleLogoClick = (event) => {
-    event.preventDefault();
-    navigate("/");
-  };
-
-  const handleLogoKeyDown = (event) => {
-    if (event.key === "Enter" || event.key === " ") {
-      event.preventDefault();
-      navigate("/");
-    }
-  };
 
   return (
-    <nav className="nav">
+    <nav className="nav" aria-label="Main navigation">
       <div className="nav-main">
         <div className="icon">
-          <span
+          <a
             className="logo-link"
-            role="button"
-            tabIndex={0}
-            onClick={handleLogoClick}
-            onKeyDown={handleLogoKeyDown}
+            href="/"
+            onClick={(e) => { e.preventDefault(); navigate("/"); }}
           >
             <img className="logo-img" src={logo} alt="HackerPedia logo" />
-            <span>HackerPedia</span>
-          </span>
-          <span
-            className="categories"
-            role="button"
-            tabIndex={0}
-            onClick={() => handleNavigate("/newest")}
-            onKeyDown={(e) => handleKeyDown(e, "/newest")}
-          >
+            <h1 className="site-title">HackerPedia</h1>
+          </a>
+          <button className="categories" type="button" onClick={() => navigate("/newest")}>
             new
-          </span>
+          </button>
           {" | "}
-
-          <span
-            className="categories"
-            role="button"
-            tabIndex={0}
-            onClick={() => handleNavigate("/best")}
-            onKeyDown={(e) => handleKeyDown(e, "/best")}
-          >
+          <button className="categories" type="button" onClick={() => navigate("/best")}>
             best
-          </span>
+          </button>
           {" | "}
-
-          <span
-            className="categories"
-            role="button"
-            tabIndex={0}
-            onClick={() => handleNavigate("/show")}
-            onKeyDown={(e) => handleKeyDown(e, "/show")}
-          >
+          <button className="categories" type="button" onClick={() => navigate("/show")}>
             show
-          </span>
+          </button>
           {" | "}
-
-          <span
-            className="categories"
-            role="button"
-            tabIndex={0}
-            onClick={() => handleNavigate("/jobs")}
-            onKeyDown={(e) => handleKeyDown(e, "/jobs")}
-          >
+          <button className="categories" type="button" onClick={() => navigate("/jobs")}>
             jobs
-          </span>
-          {!onSearchChange && (
-            <button
-              className="theme-toggle theme-toggle-mobile-no-search"
-              onClick={toggleTheme}
-              aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
-              title={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
-            >
-              <i 
-                className={`fas fa-${theme === 'light' ? 'moon' : 'sun'}`} 
-                aria-hidden="true"
-              />
-            </button>
-          )}
+          </button>
+          {!onSearchChange && <ThemeToggle className="theme-toggle-mobile-no-search" />}
         </div>
         {onSearchChange && (
           <div className="search-theme-wrapper">
             <Search searchQuery={searchQuery} onSearchChange={onSearchChange} />
-            <button
-              className="theme-toggle theme-toggle-mobile-with-search"
-              onClick={toggleTheme}
-              aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
-              title={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
-            >
-              <i 
-                className={`fas fa-${theme === 'light' ? 'moon' : 'sun'}`} 
-                aria-hidden="true"
-              />
-            </button>
+            <ThemeToggle className="theme-toggle-mobile-with-search" />
           </div>
         )}
       </div>
-      <button
-        className="theme-toggle theme-toggle-desktop"
-        onClick={toggleTheme}
-        aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
-        title={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
-      >
-        <i 
-          className={`fas fa-${theme === 'light' ? 'moon' : 'sun'}`} 
-          aria-hidden="true"
-        />
-      </button>
+      <ThemeToggle className="theme-toggle-desktop" />
     </nav>
   );
 };

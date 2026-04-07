@@ -1,0 +1,17 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 24px;
+  box-sizing: border-box;
+  background-color: var(--color-body);
+  height: 100vh;
+  overflow: hidden;
+  transition: background-color 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 8px;
+  }
+}

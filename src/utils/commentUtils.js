@@ -1,3 +1,5 @@
+import DOMPurify from 'dompurify';
+
 export const isDeletedComment = (comment) => {
   return comment && (comment.deleted || comment.dead);
 };
@@ -10,13 +12,13 @@ export const getCommentText = (comment) => {
 
 export const sanitizeHtml = (html) => {
   if (!html) return '';
-  
-  // Basic HTML sanitization - converts HN's HTML to safe display
-  return html
-    .replace(/<p>/g, '\n\n')
-    .replace(/<\/p>/g, '')
-    .replace(/<pre><code>/g, '<pre><code>')
-    .replace(/<\/code><\/pre>/g, '</code></pre>');
+
+  const clean = DOMPurify.sanitize(html, {
+    ALLOWED_TAGS: ['p', 'a', 'pre', 'code', 'i', 'b', 'em', 'strong'],
+    ALLOWED_ATTR: ['href', 'target'],
+    FORCE_BODY: true,
+  });
+  return clean.replace(/<a /g, '<a target="_blank" rel="noopener noreferrer" ');
 };
 
 export const countReplies = (comment) => {

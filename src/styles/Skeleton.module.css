@@ -1,0 +1,61 @@
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.shimmerLine {
+  border-radius: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--color-shimmerBase) 25%,
+    var(--color-shimmerHighlight) 50%,
+    var(--color-shimmerBase) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+/* ─── Story Card Skeleton ─── */
+
+.storyHeaderWrapper {
+  background-color: var(--color-cardBackground);
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+}
+
+.headerMetaRow {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+/* ─── Comment Skeleton ─── */
+
+.commentSkeletonWrapper {
+  margin-top: 8px;
+}
+
+.skeletonDepth0 { margin-left: 0; }
+.skeletonDepth1 { margin-left: 40px; }
+.skeletonDepth2 { margin-left: 80px; }
+
+@media (max-width: 768px) {
+  .skeletonDepth0 { margin-left: 0; }
+  .skeletonDepth1 { margin-left: 15px; }
+  .skeletonDepth2 { margin-left: 32px; }
+}
+
+.commentHeaderRow {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.commentBodyRow {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 6px;
+}

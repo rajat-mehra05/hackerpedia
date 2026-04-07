@@ -2,16 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { getStory } from "../services/cacheService";
 import mapTime from "./mapTime";
-import {
-  StoryWrapper,
-  StoryTitle,
-  StoryMeta,
-  StoryMetaElement,
-  UpvoteIcon,
-  DomainLink,
-  UserLink,
-  CommentsLink,
-} from "../styles/StoryStyles";
+import styles from "../styles/Story.module.css";
+import { extractDomain, extractDisplayDomain } from "../utils/urlUtils";
 
 const Story = ({ storyId, storyData }) => {
   const [story, setStory] = useState(storyData || {});
@@ -38,69 +30,62 @@ const Story = ({ storyId, storyData }) => {
   }, [storyId, storyData]);
 
   return story && story.url ? (
-    <StoryWrapper as="article" data-testid="story">
-      <StoryTitle as="h2">
-        <UpvoteIcon className="fas fa-sort-up" aria-hidden="true" />
+    <article className={styles.storyWrapper} data-testid="story">
+      <h2 className={styles.storyTitle}>
+        <i className={`fas fa-sort-up ${styles.upvoteIcon}`} aria-hidden="true" />
         <a href={story.url} rel="noopener noreferrer" target="_blank">
           {story.title}
         </a>{" "}
         <span>
           <i className="fas fa-globe" aria-hidden="true" /> (
-          <DomainLink
-            href={`https://${
-              story.url
-                .replace("http://", "")
-                .replace("https://", "")
-                .split(/[/?#]/)[0]
-            }`}
+          <a
+            className={styles.domainLink}
+            href={`https://${extractDomain(story.url)}`}
             target="_blank"
             rel="noopener noreferrer"
           >
-            {story.url
-              .replace("http://", "")
-              .replace("https://", "")
-              .split(/[/?#]/)[0]
-              .replace("www.", "")}
-          </DomainLink>
+            {extractDisplayDomain(story.url)}
+          </a>
           )
         </span>
-      </StoryTitle>
-      <StoryMeta>
+      </h2>
+      <div className={styles.storyMeta}>
         <span data-testid="story-points">
-          <StoryMetaElement color="#696969">
+          <span className={styles.storyMetaElement}>
             {story.score} points
-          </StoryMetaElement>
+          </span>
         </span>
         <span data-testid="story-by">
-          <StoryMetaElement color="#696969">
+          <span className={styles.storyMetaElement}>
             by
-            <UserLink
+            <a
+              className={styles.userLink}
               href={`https://news.ycombinator.com/user?id=${story.by}`}
               target="_blank"
               rel="noopener noreferrer"
             >
               {story.by}
-            </UserLink>
-          </StoryMetaElement>
+            </a>
+          </span>
         </span>
         <span data-testid="story-time">
-          <StoryMetaElement color="#696969">posted </StoryMetaElement>
+          <span className={styles.storyMetaElement}>posted </span>
           <time dateTime={new Date(story.time * 1000).toISOString()}>
             {mapTime(story.time)} ago
           </time>
         </span>
         <span data-testid="story-comments">
-          <StoryMetaElement color="#696969">
-            <CommentsLink
-              as={Link}
+          <span className={styles.storyMetaElement}>
+            <Link
+              className={styles.commentsLink}
               to={`/item/${story.id}`}
             >
               {story?.kids?.length || 0} comments
-            </CommentsLink>
-          </StoryMetaElement>
+            </Link>
+          </span>
         </span>
-      </StoryMeta>
-    </StoryWrapper>
+      </div>
+    </article>
   ) : null;
 };
 

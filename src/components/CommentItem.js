@@ -1,22 +1,12 @@
 import React, { useState } from 'react';
 import mapTime from './mapTime';
-import {
-  CommentWrapper,
-  CommentHeader,
-  CommentAuthor,
-  CommentTime,
-  Separator,
-  CollapseLink,
-  NextLink,
-  Upvote,
-  CommentContent,
-  CommentFooter,
-  ReplyLink,
-  CollapsedInfo,
-  RepliesContainer,
-  DeletedComment,
-} from '../styles/CommentStyles';
+import styles from '../styles/Comment.module.css';
 import { isDeletedComment, getCommentText, sanitizeHtml, countReplies } from '../utils/commentUtils';
+
+const depthClass = (depth) => {
+  if (depth >= 4) return styles.depth4;
+  return styles[`depth${depth}`] || styles.depth0;
+};
 
 const CommentItem = ({ comment, depth = 0 }) => {
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -33,53 +23,61 @@ const CommentItem = ({ comment, depth = 0 }) => {
 
   if (deleted) {
     return (
-      <CommentWrapper $depth={depth}>
-        <DeletedComment>[deleted]</DeletedComment>
-      </CommentWrapper>
+      <div className={`${styles.commentWrapper} ${depthClass(depth)}`}>
+        <div className={styles.deletedComment}>[deleted]</div>
+      </div>
     );
   }
 
   return (
-    <CommentWrapper $depth={depth}>
-      <CommentHeader>
-        <Upvote>▲</Upvote>
-        <CommentAuthor
+    <div className={`${styles.commentWrapper} ${depthClass(depth)}`}>
+      <div className={styles.commentHeader}>
+        <span className={styles.upvote}>&#9650;</span>
+        <a
+          className={styles.commentAuthor}
           href={`https://news.ycombinator.com/user?id=${comment.by}`}
           target="_blank"
           rel="noopener noreferrer"
         >
           {comment.by}
-        </CommentAuthor>
-        <CommentTime>
+        </a>
+        <span className={styles.commentTime}>
           {mapTime(comment.time)} ago
-        </CommentTime>
-        <Separator>|</Separator>
-        <NextLink href="#" onClick={(e) => e.preventDefault()}>
+        </span>
+        <span className={styles.separator}>|</span>
+        <button className={styles.nextLink} type="button" aria-label="Jump to next comment">
           next
-        </NextLink>
-        <CollapseLink href="#" onClick={handleToggle}>
-          [{isCollapsed ? '+' : '−'}]
-        </CollapseLink>
-      </CommentHeader>
+        </button>
+        <button
+          className={styles.collapseLink}
+          type="button"
+          onClick={handleToggle}
+          aria-expanded={!isCollapsed}
+          aria-label={isCollapsed ? 'Expand comment' : 'Collapse comment'}
+        >
+          [{isCollapsed ? '+' : '\u2212'}]
+        </button>
+      </div>
 
       {isCollapsed ? (
-        <CollapsedInfo>
-          [{replyCount} {replyCount === 1 ? 'more' : 'more'}]
-        </CollapsedInfo>
+        <div className={styles.collapsedInfo}>
+          [{replyCount} {replyCount === 1 ? 'reply' : 'replies'}]
+        </div>
       ) : (
         <>
-          <CommentContent
+          <div
+            className={styles.commentContent}
             dangerouslySetInnerHTML={{
               __html: sanitizeHtml(getCommentText(comment))
             }}
           />
-          <CommentFooter>
-            <ReplyLink href="#" onClick={(e) => e.preventDefault()}>
+          <div className={styles.commentFooter}>
+            <button className={styles.replyLink} type="button" aria-label={`Reply to ${comment.by}`}>
               reply
-            </ReplyLink>
-          </CommentFooter>
+            </button>
+          </div>
           {comment.replies && comment.replies.length > 0 && (
-            <RepliesContainer>
+            <div className={styles.repliesContainer}>
               {comment.replies.map((reply) => (
                 <CommentItem
                   key={reply.id}
@@ -87,13 +85,12 @@ const CommentItem = ({ comment, depth = 0 }) => {
                   depth={depth + 1}
                 />
               ))}
-            </RepliesContainer>
+            </div>
           )}
         </>
       )}
-    </CommentWrapper>
+    </div>
   );
 };
 
 export default CommentItem;
-

@@ -1,15 +1,73 @@
 :root {
-  --body-bg: #f6f6ef;
-  --scrollbar-bg: white;
-  --scrollbar-thumb: rgb(250, 96, 25);
-  --scrollbar-border: white;
+  /* Background colors */
+  --color-body: #f6f6ef;
+  --color-background: #eee;
+  --color-cardBackground: #eee;
+
+  /* Text colors */
+  --color-primary: #2e2e2c;
+  --color-secondary: #828282;
+  --color-tertiary: #595959;
+
+  /* Navigation */
+  --color-navBackground: rgb(250, 96, 25);
+  --color-navText: #000000;
+  --color-navTextHover: #ffffff;
+
+  /* Links */
+  --color-link: #2e2e2c;
+  --color-linkHover: #2e2e2c;
+  --color-domainLink: #828282;
+
+  /* UI Elements */
+  --color-scrollbarBg: white;
+  --color-scrollbarThumb: rgb(250, 96, 25);
+  --color-scrollbarThumbBorder: white;
+
+  /* Accents */
+  --color-accent: #FC7310;
+
+  /* Shimmer/Skeleton */
+  --color-shimmerBase: #ddd;
+  --color-shimmerHighlight: #e8e8e8;
+
+  /* Legacy aliases (used by existing CSS files) */
+  --body-bg: var(--color-body);
+  --scrollbar-bg: var(--color-scrollbarBg);
+  --scrollbar-thumb: var(--color-scrollbarThumb);
+  --scrollbar-border: var(--color-scrollbarThumbBorder);
 }
 
 .dark-theme {
-  --body-bg: #1a1a1a;
-  --scrollbar-bg: #1a1a1a;
-  --scrollbar-thumb: rgb(200, 76, 15);
-  --scrollbar-border: #1a1a1a;
+  --color-body: #1a1a1a;
+  --color-background: #242424;
+  --color-cardBackground: #2a2a2a;
+
+  --color-primary: #e8e8e8;
+  --color-secondary: #b0b0b0;
+  --color-tertiary: #999999;
+
+  --color-navBackground: rgb(200, 76, 15);
+  --color-navText: #ffffff;
+  --color-navTextHover: #e8e8e8;
+
+  --color-link: #e8e8e8;
+  --color-linkHover: #ffffff;
+  --color-domainLink: #b0b0b0;
+
+  --color-scrollbarBg: #1a1a1a;
+  --color-scrollbarThumb: rgb(200, 76, 15);
+  --color-scrollbarThumbBorder: #1a1a1a;
+
+  --color-accent: #FC7310;
+
+  --color-shimmerBase: #333;
+  --color-shimmerHighlight: #3d3d3d;
+
+  --body-bg: var(--color-body);
+  --scrollbar-bg: var(--color-scrollbarBg);
+  --scrollbar-thumb: var(--color-scrollbarThumb);
+  --scrollbar-border: var(--color-scrollbarThumbBorder);
 }
 
 body {
@@ -19,13 +77,13 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: var(--body-bg);
+  background-color: var(--color-body);
   transition: background-color 0.3s ease;
   min-height: 100vh;
 }
 
 html {
-  background-color: var(--body-bg);
+  background-color: var(--color-body);
   transition: background-color 0.3s ease;
 }
 

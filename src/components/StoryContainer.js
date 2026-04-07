@@ -1,22 +1,15 @@
-import Container from "@mui/material/Container";
 import React, { useEffect, useState, useCallback, useRef, startTransition } from "react";
-import styled from "styled-components";
-import { List } from "react-window";
+import { List, useDynamicRowHeight } from "react-window";
 import { StoryListSkeleton } from "../styles/SkeletonStyles";
 import NavNews from "../NavigationBar/NavNews";
 import { getStoryIds, getStory } from "../services/cacheService";
 import { STORY_INCREMENT, MAX_STORIES } from "../infiniteScroll/constants";
 import "../styles/StoryContainer.css";
+import containerStyles from "./StoryContainer.module.css";
 import Story from "./Story";
+import { extractDisplayDomain } from "../utils/urlUtils";
 
-const StyledContainer = styled(Container)`
-  background-color: ${props => props.theme.colors.body} !important;
-  min-height: 100vh;
-  transition: background-color 0.3s ease;
-`;
-
-const ROW_HEIGHT = 63;
-const URL_PATH_RE = /[/?#]/;
+const DEFAULT_ROW_HEIGHT = 75;
 
 const StoryContainer = (props) => {
   const [storyIds, setStoryIds] = useState([]);
@@ -26,6 +19,17 @@ const StoryContainer = (props) => {
   const [loading, setLoading] = useState(true);
   const loadedCountRef = useRef(STORY_INCREMENT);
   const isLoadingMore = useRef(false);
+  const storyIdsRef = useRef(storyIds);
+  storyIdsRef.current = storyIds;
+  const storiesLengthRef = useRef(0);
+  const searchQueryRef = useRef(searchQuery);
+  searchQueryRef.current = searchQuery;
+  const storiesRef = useRef(filteredStories);
+  storiesRef.current = filteredStories;
+
+  const dynamicRowHeight = useDynamicRowHeight({
+    defaultRowHeight: DEFAULT_ROW_HEIGHT,
+  });
 
   useEffect(() => {
     let isMounted = true;
@@ -80,12 +84,6 @@ const StoryContainer = (props) => {
     fetchStories();
     return () => { isMounted = false; };
   }, [props.category]);
-
-  const storyIdsRef = useRef(storyIds);
-  storyIdsRef.current = storyIds;
-  const storiesLengthRef = useRef(0);
-  const searchQueryRef = useRef(searchQuery);
-  searchQueryRef.current = searchQuery;
 
   const loadMoreStories = useCallback(async () => {
     if (isLoadingMore.current) return;
@@ -147,15 +145,9 @@ const StoryContainer = (props) => {
     const filtered = stories.filter((story) => {
       const titleMatch = story.title?.toLowerCase().includes(query);
       const domainMatch = story.url
-        ? story.url
-            .replace('http://', '')
-            .replace('https://', '')
-            .split(URL_PATH_RE)[0]
-            .replace('www.', '')
-            .toLowerCase()
-            .includes(query)
+        ? extractDisplayDomain(story.url).toLowerCase().includes(query)
         : false;
-      
+
       return titleMatch || domainMatch;
     });
 
@@ -182,21 +174,18 @@ const StoryContainer = (props) => {
     setSearchQuery(query);
   };
 
-  const storiesRef = useRef(filteredStories);
-  storiesRef.current = filteredStories;
-
   const StoryRow = useCallback(({ index, style }) => {
     const story = storiesRef.current[index];
     if (!story) return null;
     return (
-      <div style={style}>
+      <div style={style} role="listitem">
         <Story storyId={story.id} storyData={story} />
       </div>
     );
   }, []);
 
   return (
-    <StyledContainer maxWidth="lg" component="main">
+    <div className={containerStyles.container} role="main">
       <div ref={navRef}>
         <NavNews searchQuery={searchQuery} onSearchChange={handleSearchChange} />
       </div>
@@ -214,9 +203,10 @@ const StoryContainer = (props) => {
           <section aria-label="Stories">
             {filteredStories.length > 0 ? (
               <List
+                className="virtual-list"
                 style={{ height: listHeight }}
                 rowCount={filteredStories.length}
-                rowHeight={ROW_HEIGHT}
+                rowHeight={dynamicRowHeight}
                 rowComponent={StoryRow}
                 rowProps={{}}
                 onRowsRendered={handleRowsRendered}
@@ -231,7 +221,7 @@ const StoryContainer = (props) => {
           </section>
         </>
       )}
-    </StyledContainer>
+    </div>
   );
 };
 
