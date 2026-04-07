@@ -1,9 +1,6 @@
 import React from 'react';
 import CommentItem from './CommentItem';
-import {
-  CommentListWrapper,
-  NoComments,
-} from '../styles/CommentStyles';
+import styles from '../styles/Comment.module.css';
 import { CommentListSkeleton } from '../styles/SkeletonStyles';
 
 const CommentList = ({ comments, loading }) => {
@@ -13,20 +10,19 @@ const CommentList = ({ comments, loading }) => {
 
   if (!comments || comments.length === 0) {
     return (
-      <CommentListWrapper>
-        <NoComments>No comments yet.</NoComments>
-      </CommentListWrapper>
+      <div className={styles.commentListWrapper}>
+        <div className={styles.noComments}>No comments yet.</div>
+      </div>
     );
   }
 
   return (
-    <CommentListWrapper>
+    <div className={styles.commentListWrapper}>
       {comments.map((comment) => (
         <CommentItem key={comment.id} comment={comment} depth={0} />
       ))}
-    </CommentListWrapper>
+    </div>
   );
 };
 
 export default CommentList;
-

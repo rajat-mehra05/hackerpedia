@@ -1,31 +1,18 @@
-:root {
-  --text-primary: #2e2e2c;
-  --text-secondary: #696969;
-  --container-bg: #f6f6ef;
+.virtual-list::-webkit-scrollbar {
+  background: var(--color-scrollbarBg, white);
+  width: 15px;
 }
 
-.dark-theme {
-  --text-primary: #e8e8e8;
-  --text-secondary: #999999;
-  --container-bg: #1a1a1a;
-}
-
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border-width: 0;
+.virtual-list::-webkit-scrollbar-thumb {
+  background-color: var(--color-scrollbarThumb, rgb(250, 96, 25));
+  border-radius: 6px;
+  border: 3px solid var(--color-scrollbarThumbBorder, white);
 }
 
 .search-results-info {
   padding: 15px;
   text-align: center;
-  color: var(--text-secondary);
+  color: var(--color-tertiary);
   font-size: 0.9rem;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
@@ -33,7 +20,7 @@
 .no-results {
   padding: 40px 20px;
   text-align: center;
-  color: var(--text-primary);
+  color: var(--color-primary);
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
@@ -45,5 +32,5 @@
 
 .no-results p:last-child {
   font-size: 0.9rem;
-  color: var(--text-secondary);
+  color: var(--color-tertiary);
 }

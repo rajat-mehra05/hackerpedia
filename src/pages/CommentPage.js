@@ -1,84 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import Container from '@mui/material/Container';
-import styled from 'styled-components';
 import { CommentPageSkeleton } from '../styles/SkeletonStyles';
 import { getStory, getCommentsRecursive } from '../services/cacheService';
 import NavNews from '../NavigationBar/NavNews';
 import CommentList from '../components/CommentList';
 import mapTime from '../components/mapTime';
-import {
-  StoryMeta,
-  StoryMetaElement,
-  DomainLink,
-  UserLink,
-} from '../styles/StoryStyles';
-
-const StyledContainer = styled(Container)`
-  background-color: ${props => props.theme.colors.body} !important;
-  min-height: 100vh;
-  transition: background-color 0.3s ease;
-  padding-bottom: 40px;
-`;
-
-const Breadcrumb = styled.div`
-  padding: 15px 0;
-  font-size: 0.9rem;
-  
-  button {
-    background: none;
-    border: none;
-    color: ${props => props.theme.colors.link};
-    cursor: pointer;
-    text-decoration: underline;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: 0.9rem;
-    padding: 0;
-    
-    &:hover {
-      color: ${props => props.theme.colors.linkHover};
-    }
-  }
-`;
-
-const StoryHeader = styled.div`
-  background-color: ${props => props.theme.colors.cardBackground};
-  padding: 20px;
-  margin-bottom: 20px;
-  border-radius: 4px;
-  transition: background-color 0.3s ease;
-`;
-
-const StoryLink = styled.a`
-  color: ${props => props.theme.colors.link};
-  text-decoration: none;
-  font-size: 1.1rem;
-  font-weight: 500;
-  display: inline-block;
-  margin-bottom: 10px;
-  
-  &:hover {
-    text-decoration: underline;
-    color: ${props => props.theme.colors.linkHover};
-  }
-`;
-
-const ErrorMessage = styled.div`
-  padding: 40px 20px;
-  text-align: center;
-  color: ${props => props.theme.colors.primary};
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-`;
-
-const CommentCount = styled.div`
-  padding: 15px 20px;
-  color: ${props => props.theme.colors.secondary};
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  font-size: 0.9rem;
-  background-color: ${props => props.theme.colors.cardBackground};
-  border-radius: 4px;
-  margin-bottom: 10px;
-`;
+import styles from './CommentPage.module.css';
+import { extractDisplayDomain } from '../utils/urlUtils';
 
 const CommentPage = () => {
   const { id } = useParams();
@@ -94,18 +22,18 @@ const CommentPage = () => {
       try {
         setLoading(true);
         setError(null);
-        
+
         const storyData = await getStory(id);
-        
+
         if (!storyData) {
           setError('Story not found');
           setLoading(false);
           return;
         }
-        
+
         setStory(storyData);
         setLoading(false);
-        
+
         if (storyData.kids && storyData.kids.length > 0) {
           setCommentsLoading(true);
           const commentsData = await getCommentsRecursive(storyData.kids, 10, 0, id);
@@ -133,101 +61,103 @@ const CommentPage = () => {
 
   if (loading) {
     return (
-      <StyledContainer maxWidth="lg" component="main">
+      <main className={styles.container}>
         <NavNews />
         <CommentPageSkeleton />
-      </StyledContainer>
+      </main>
     );
   }
 
   if (error || !story) {
     return (
-      <StyledContainer maxWidth="lg" component="main">
+      <main className={styles.container}>
         <NavNews />
-        <Breadcrumb>
+        <div className={styles.breadcrumb}>
           <button onClick={handleBack} aria-label="Go back">
-            ← Back
+            &larr; Back
           </button>
-        </Breadcrumb>
-        <ErrorMessage>{error || 'Story not found'}</ErrorMessage>
-      </StyledContainer>
+        </div>
+        <div className={styles.errorMessage}>{error || 'Story not found'}</div>
+      </main>
     );
   }
 
   return (
-    <StyledContainer maxWidth="lg" component="main">
+    <main className={styles.container}>
       <NavNews />
-      
-      <Breadcrumb>
-        <button onClick={handleBack} aria-label="Go back">
-          ← Back
-        </button>
-      </Breadcrumb>
 
-      <StoryHeader>
-        <StoryLink
-          href={story.url}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {story.title}
-        </StoryLink>
+      <div className={styles.breadcrumb}>
+        <button onClick={handleBack} aria-label="Go back">
+          &larr; Back
+        </button>
+      </div>
+
+      <div className={styles.storyHeader}>
+        {story.url ? (
+          <a
+            className={styles.storyLink}
+            href={story.url}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {story.title}
+          </a>
+        ) : (
+          <span className={styles.storyLink}>{story.title}</span>
+        )}
         {story.url && (
-          <div style={{ marginBottom: '10px' }}>
-            <DomainLink
+          <div className={styles.domainWrapper}>
+            <a
+              className={styles.domainLink}
               href={story.url}
               target="_blank"
               rel="noopener noreferrer"
             >
-              ({story.url
-                .replace('http://', '')
-                .replace('https://', '')
-                .split(/[/?#]/)[0]
-                .replace('www.', '')})
-            </DomainLink>
+              ({extractDisplayDomain(story.url)})
+            </a>
           </div>
         )}
-        <StoryMeta>
+        <div className={styles.storyMeta}>
           <span>
-            <StoryMetaElement>
+            <span className={styles.storyMetaElement}>
               {story.score} points
-            </StoryMetaElement>
+            </span>
           </span>
           <span>
-            <StoryMetaElement>
+            <span className={styles.storyMetaElement}>
               by{" "}
-              <UserLink
+              <a
+                className={styles.userLink}
                 href={`https://news.ycombinator.com/user?id=${story.by}`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 {story.by}
-              </UserLink>
-            </StoryMetaElement>
+              </a>
+            </span>
           </span>
           <span>
-            <StoryMetaElement>
+            <span className={styles.storyMetaElement}>
               {mapTime(story.time)} ago
-            </StoryMetaElement>
+            </span>
           </span>
           <span>
-            <StoryMetaElement>
+            <span className={styles.storyMetaElement}>
               {story.descendants || 0} comments
-            </StoryMetaElement>
+            </span>
           </span>
-        </StoryMeta>
-      </StoryHeader>
+        </div>
+      </div>
 
       {story.descendants > 0 && (
-        <CommentCount>
+        <div className={styles.commentCount}>
           {story.descendants} {story.descendants === 1 ? 'comment' : 'comments'}
-        </CommentCount>
+        </div>
       )}
 
       <CommentList comments={comments} loading={commentsLoading} />
-    </StyledContainer>
+    </main>
   );
 };
 
 export default CommentPage;
-
