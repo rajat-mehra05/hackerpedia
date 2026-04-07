@@ -16,7 +16,8 @@ A modern, feature-rich Hacker News interface built with React while learning fro
 - **Axios** - HTTP client for API calls
 - **react-window** - Virtualized list rendering
 - **DOMPurify** - HTML sanitization for comment content
-- **PWA** - Progressive Web App
+- **Vite** - Build tool and dev server
+- **PWA** - Progressive Web App (via vite-plugin-pwa)
 
 ---
 
@@ -65,8 +66,8 @@ A modern, feature-rich Hacker News interface built with React while learning fro
 Use the node package manager npm to set up the development environment.
 
 ### Prerequisites
-- Node.js (v14 or higher)
-- npm or yarn
+- Node.js (v20.19+ or v22.12+)
+- npm
 
 ### Installation
 
@@ -83,12 +84,17 @@ Use the node package manager npm to set up the development environment.
 
 3. **Start the development server**
    ```bash
-   npm run start
+   npm run dev
    ```
 
 4. **Build for production**
    ```bash
    npm run build
+   ```
+
+5. **Preview production build**
+   ```bash
+   npm run preview
    ```
 
 The app will be available at `http://localhost:3000`

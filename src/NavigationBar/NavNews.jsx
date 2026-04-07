@@ -34,27 +34,28 @@ const NavNews = ({ searchQuery, onSearchChange }) => {
             <img className="logo-img" src={logo} alt="HackerPedia logo" />
             <h1 className="site-title">HackerPedia</h1>
           </a>
-          <button className="categories" type="button" onClick={() => navigate("/newest")}>
-            new
-          </button>
-          {" | "}
-          <button className="categories" type="button" onClick={() => navigate("/best")}>
-            best
-          </button>
-          {" | "}
-          <button className="categories" type="button" onClick={() => navigate("/show")}>
-            show
-          </button>
-          {" | "}
-          <button className="categories" type="button" onClick={() => navigate("/jobs")}>
-            jobs
-          </button>
-          {!onSearchChange && <ThemeToggle className="theme-toggle-mobile-no-search" />}
+          <ThemeToggle className="theme-toggle-mobile" />
+          <div className="categories-row">
+            <button className="categories" type="button" onClick={() => navigate("/newest")}>
+              new
+            </button>
+            {" | "}
+            <button className="categories" type="button" onClick={() => navigate("/best")}>
+              best
+            </button>
+            {" | "}
+            <button className="categories" type="button" onClick={() => navigate("/show")}>
+              show
+            </button>
+            {" | "}
+            <button className="categories" type="button" onClick={() => navigate("/jobs")}>
+              jobs
+            </button>
+          </div>
         </div>
         {onSearchChange && (
           <div className="search-theme-wrapper">
             <Search searchQuery={searchQuery} onSearchChange={onSearchChange} />
-            <ThemeToggle className="theme-toggle-mobile-with-search" />
           </div>
         )}
       </div>
