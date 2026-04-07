@@ -91,9 +91,7 @@
   line-height: 1.5;
   color: var(--color-primary);
   margin-bottom: 5px;
-  word-wrap: break-word;
-  word-break: break-word;
-  overflow-wrap: break-word;
+  overflow-wrap: anywhere;
   max-width: 100%;
 }
 

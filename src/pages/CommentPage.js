@@ -93,16 +93,20 @@ const CommentPage = () => {
       </div>
 
       <div className={styles.storyHeader}>
-        <a
-          className={styles.storyLink}
-          href={story.url}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {story.title}
-        </a>
+        {story.url ? (
+          <a
+            className={styles.storyLink}
+            href={story.url}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {story.title}
+          </a>
+        ) : (
+          <span className={styles.storyLink}>{story.title}</span>
+        )}
         {story.url && (
-          <div style={{ marginBottom: '10px' }}>
+          <div className={styles.domainWrapper}>
             <a
               className={styles.domainLink}
               href={story.url}

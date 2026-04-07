@@ -2,10 +2,12 @@ export const extractDomain = (url) => {
   try {
     return new URL(url).hostname;
   } catch {
-    return url;
+    return null;
   }
 };
 
 export const extractDisplayDomain = (url) => {
-  return extractDomain(url).replace(/^www\./, '');
+  const domain = extractDomain(url);
+  if (!domain) return null;
+  return domain.replace(/^www\./, '');
 };

@@ -36,18 +36,20 @@ const Story = ({ storyId, storyData }) => {
         <a href={story.url} rel="noopener noreferrer" target="_blank">
           {story.title}
         </a>{" "}
-        <span>
-          <i className="fas fa-globe" aria-hidden="true" /> (
-          <a
-            className={styles.domainLink}
-            href={`https://${extractDomain(story.url)}`}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {extractDisplayDomain(story.url)}
-          </a>
-          )
-        </span>
+        {extractDomain(story.url) && (
+          <span>
+            <i className="fas fa-globe" aria-hidden="true" /> (
+            <a
+              className={styles.domainLink}
+              href={`https://${extractDomain(story.url)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {extractDisplayDomain(story.url)}
+            </a>
+            )
+          </span>
+        )}
       </h2>
       <div className={styles.storyMeta}>
         <span data-testid="story-points">

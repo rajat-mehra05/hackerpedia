@@ -15,7 +15,7 @@ export const sanitizeHtml = (html) => {
 
   const clean = DOMPurify.sanitize(html, {
     ALLOWED_TAGS: ['p', 'a', 'pre', 'code', 'i', 'b', 'em', 'strong'],
-    ALLOWED_ATTR: ['href', 'target'],
+    ALLOWED_ATTR: ['href'],
     FORCE_BODY: true,
   });
   return clean.replace(/<a /g, '<a target="_blank" rel="noopener noreferrer" ');

@@ -1,5 +1,5 @@
 .storyWrapper {
-  font-family: "Verdana", sans-serif;
+  font-family: Verdana, sans-serif;
   padding: 10px 10px 10px 15px;
   color: var(--color-secondary);
   background-color: var(--color-cardBackground);
@@ -62,7 +62,7 @@
 }
 
 .storyMeta {
-  font-size: 0.756rem;
+  font-size: 0.75rem;
   display: flex;
   flex-wrap: wrap;
   gap: 4px;

@@ -60,6 +60,7 @@ const Search = ({ searchQuery, onSearchChange }) => {
         />
         {localQuery && (
           <button
+            type="button"
             className={styles.clearButton}
             onClick={handleClear}
             aria-label="Clear search"

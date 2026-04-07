@@ -144,8 +144,9 @@ const StoryContainer = (props) => {
     const query = searchQuery.toLowerCase().trim();
     const filtered = stories.filter((story) => {
       const titleMatch = story.title?.toLowerCase().includes(query);
-      const domainMatch = story.url
-        ? extractDisplayDomain(story.url).toLowerCase().includes(query)
+      const domain = story.url ? extractDisplayDomain(story.url) : null;
+      const domainMatch = domain
+        ? domain.toLowerCase().includes(query)
         : false;
 
       return titleMatch || domainMatch;
@@ -162,7 +163,12 @@ const StoryContainer = (props) => {
 
   useEffect(() => {
     const updateHeight = () => {
-      const navHeight = navRef.current?.offsetHeight || 50;
+      const navEl = navRef.current;
+      let navHeight = navEl?.offsetHeight || 50;
+      const navInner = navEl?.firstElementChild;
+      if (navInner) {
+        navHeight += parseFloat(getComputedStyle(navInner).marginTop) || 0;
+      }
       setListHeight(window.innerHeight - navHeight - 10);
     };
     updateHeight();
