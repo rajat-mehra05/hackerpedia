@@ -22,7 +22,7 @@
   align-items: center;
   flex-wrap: wrap;
   gap: 5px;
-  font-weight: 700;
+  font-weight: normal;
   font-size: 1.12rem;
   color: var(--color-navText);
 }
@@ -35,7 +35,7 @@
 .nav a {
   color: var(--color-navText);
   font-size: 1rem;
-  font-weight: bold;
+  font-weight: normal;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   margin-left: 5px;
   margin-right: 12px;
@@ -54,7 +54,7 @@
 
 .site-title {
   font-size: 1rem;
-  font-weight: bold;
+  font-weight: normal;
   margin: 0;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   color: inherit;
@@ -67,7 +67,7 @@
   cursor: pointer;
   letter-spacing: 1px;
   color: var(--color-navText);
-  font-weight: 700;
+  font-weight: normal;
   font-size: 1.12rem;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   text-decoration: none;
@@ -87,7 +87,7 @@
   text-decoration: none;
   color: var(--color-navText);
   font-size: 1rem;
-  font-weight: bold;
+  font-weight: normal;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   margin-right: 12px;
   cursor: pointer;

@@ -9,13 +9,13 @@ A modern, feature-rich Hacker News interface built with React while learning fro
 
 ## 🛠️ Tech Stack
 
-- **React** - UI framework
+- **React 18** - UI framework
 - **React Hooks** - State and lifecycle management
-- **Styled Components** - CSS-in-JS with theming
-- **Material-UI (MUI)** - Layout components and design system
+- **CSS Modules** - Scoped, modular styling
 - **React Router DOM** - Client-side routing
 - **Axios** - HTTP client for API calls
-- **React Spinners** - Loading animations
+- **react-window** - Virtualized list rendering
+- **DOMPurify** - HTML sanitization for comment content
 - **PWA** - Progressive Web App
 
 ---
@@ -31,12 +31,12 @@ A modern, feature-rich Hacker News interface built with React while learning fro
 ### 🎨 User Interface
 - **Dark Mode** - Toggle between light and dark themes with persistent localStorage
 - **Responsive Design** - Fully responsive layout that works on desktop, tablet, and mobile
-- **Loading States** - Beautiful loading animations using react-spinners
+- **Skeleton Loading** - Content-aware skeleton placeholders that match actual layout
 - **Clean UI** - Modern, minimalist design inspired by Hacker News
 
 ### 🔍 Search & Discovery
 - **Live Search** - Real-time search with debounced input for better performance
-- **Smart Filtering** - Search across story titles, authors, and domains
+- **Smart Filtering** - Search across story titles and domains
 - **Search Results Counter** - Shows the number of matching stories
 - **Clear Search** - Quick clear button and ESC key support
 
@@ -50,7 +50,8 @@ A modern, feature-rich Hacker News interface built with React while learning fro
 
 ### 🎯 Technical Features
 - **React Hooks** - Modern functional components with useState, useEffect, useCallback, useRef
-- **Styled Components** - Theme-aware, scoped CSS-in-JS styling
+- **CSS Modules** - Scoped styles with zero global leakage
+- **Virtualized Lists** - react-window for smooth scrolling with large story feeds
 - **React Router** - Client-side routing for navigation
 - **Axios** - Efficient API calls with error handling
 - **Context API** - Global theme management
@@ -71,7 +72,7 @@ Use the node package manager npm to set up the development environment.
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/hackerpedia.git
+   git clone https://github.com/rajat-mehra05/hackerpedia.git
    cd hackerpedia
    ```
 
@@ -97,56 +98,11 @@ The app will be available at `http://localhost:3000`
 ## 🎮 Usage
 
 - **Browse Stories** - Scroll through the main feed of top stories
-- **Search** - Use the search bar to filter stories by title, author, or domain
+- **Search** - Use the search bar to filter stories by title or domain
 - **Toggle Theme** - Click the moon/sun icon in the navigation bar
 - **View Comments** - Click on the comment count to view the full discussion
 - **Collapse Comments** - Click [−] to collapse a comment thread
 - **Navigate** - Use the back button or browser history to return to the main feed
-
----
-
-## 📁 Project Structure
-
-```
-hackerpedia/
-├── public/
-├── src/
-│   ├── components/
-│   │   ├── CommentItem.js      # Individual comment component
-│   │   ├── CommentList.js      # Comment list wrapper
-│   │   ├── Search.js           # Search input component
-│   │   ├── Story.js            # Story card component
-│   │   ├── StoryContainer.js   # Main story feed
-│   │   └── mapTime.js          # Time formatting utility
-│   ├── context/
-│   │   └── ThemeContext.js     # Theme provider
-│   ├── infiniteScroll/
-│   │   ├── constants.js        # Infinite scroll constants
-│   │   └── infiniteScroll.js   # Infinite scroll hook
-│   ├── NavigationBar/
-│   │   ├── NavNews.js          # Navigation component
-│   │   └── NavNews.css         # Navigation styles
-│   ├── pages/
-│   │   └── CommentPage.js      # Comment view page
-│   ├── services/
-│   │   ├── hnAPI.js            # Hacker News API calls
-│   │   └── cacheService.js     # Caching layer for API calls
-│   ├── styles/
-│   │   ├── CommentStyles.js    # Comment styled components
-│   │   ├── StoryStyles.js      # Story styled components
-│   │   ├── StoryContainer.css  # Story container styles
-│   │   └── themes.js           # Theme definitions
-│   ├── utils/
-│   │   ├── cacheUtils.js       # Cache management utilities
-│   │   ├── commentUtils.js     # Comment helper functions
-│   │   ├── searchUtils.js      # Search helper functions
-│   │   └── themeUtils.js       # Theme helper functions
-│   ├── App.js                  # Main app component
-│   ├── index.js                # App entry point
-│   └── index.css               # Global styles
-├── package.json
-└── README.md
-```
 
 ---
 
@@ -182,26 +138,6 @@ The caching system consists of two layers:
    - Transparent caching layer over HN API calls
    - Cache-first strategy with API fallback
    - Automatic cache updates after API calls
-
----
-
-## 🚀 Future Enhancements
-
-- [ ] User authentication for commenting and voting
-- [ ] Vote functionality (upvote stories and comments)
-- [ ] Filter by story type (Ask HN, Show HN, Jobs)
-- [ ] Share functionality
-- [ ] Bookmarking/favorites
-- [ ] Custom story sorting (newest, popular, trending)
-- [ ] User profile pages
-- [ ] Comment replies
-- [ ] Pagination controls
-
----
-
-## 🐛 Known Issues
-
-All major issues have been resolved! If you find a bug, please open an issue.
 
 ---
 
