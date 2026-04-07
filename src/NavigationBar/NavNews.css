@@ -131,9 +131,12 @@
   margin-right: 10px;
 }
 
-/* Mobile - hide desktop version by default */
-.theme-toggle-mobile-no-search,
-.theme-toggle-mobile-with-search {
+.categories-row {
+  display: inline;
+}
+
+/* Mobile theme toggle - hidden on desktop */
+.theme-toggle-mobile {
   display: none;
 }
 
@@ -168,19 +171,26 @@
     width: 100%;
   }
 
+  .icon .logo-link {
+    margin-right: 0;
+  }
+
+  .icon .theme-toggle-mobile {
+    margin-left: auto;
+  }
+
+  .icon .categories-row {
+    width: 100%;
+    margin-top: 4px;
+  }
+
+  .icon .categories-row .categories {
+    font-size: 0.9rem;
+  }
+
   .icon img {
     padding: 2px;
     margin-right: 5px;
-  }
-
-  .nav a {
-    display: flex;
-    flex-wrap: wrap;
-  }
-
-  .nav .categories {
-    font-size: 1rem;
-    margin-left: 8px;
   }
 
   /* Mobile - hide desktop version */
@@ -188,23 +198,13 @@
     display: none;
   }
 
-  /* Mobile with search - show beside search bar, centered */
+  /* Mobile - hide search bar */
   .search-theme-wrapper {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 10px;
+    display: none;
   }
 
-  .theme-toggle-mobile-with-search {
-    display: flex;
-    flex-shrink: 0;
-  }
-
-  /* Mobile without search - show at far right */
-  .theme-toggle-mobile-no-search {
+  /* Mobile - show theme toggle at end of icon row */
+  .theme-toggle-mobile {
     display: flex;
     margin-left: auto;
   }

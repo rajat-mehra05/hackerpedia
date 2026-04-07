@@ -32,10 +32,12 @@ const Story = ({ storyId, storyData }) => {
   return story && story.url ? (
     <article className={styles.storyWrapper} data-testid="story">
       <h2 className={styles.storyTitle}>
-        <i className={`fas fa-sort-up ${styles.upvoteIcon}`} aria-hidden="true" />
-        <a href={story.url} rel="noopener noreferrer" target="_blank">
-          {story.title}
-        </a>{" "}
+        <span className={styles.titleGroup}>
+          <i className={`fas fa-sort-up ${styles.upvoteIcon}`} aria-hidden="true" />
+          <a href={story.url} rel="noopener noreferrer" target="_blank">
+            {story.title}
+          </a>
+        </span>{" "}
         {extractDomain(story.url) && (
           <span>
             <i className="fas fa-globe" aria-hidden="true" /> (
